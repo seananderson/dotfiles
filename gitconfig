@@ -1,0 +1,37 @@
+[user]
+	name = Sean Anderson
+	email = github@seananderson.ca
+[alias]
+	c  = commit -am
+	ca = commit -a
+	cav = commit -av
+	st = status
+	ci = commit
+	co = checkout
+	br = branch
+	df = diff
+	lg = log -p
+	recent = log --pretty=oneline --abbrev-commit -n 10
+	re = log --pretty=oneline --abbrev-commit -n 10
+	word = diff --color-words
+	w = diff --color-words
+  ;undo-commit = 'reset --soft HEAD^'
+[apply]
+	whitespace = fix
+[color]
+	ui = auto
+	diff = auto
+	interactive = auto
+	status = auto
+	branch = auto
+[core]
+	excludesfile = /Users/seananderson/.gitignore_global
+[diff "tex"]
+	wordRegex = "\\\\[a-zA-Z]+|[{}]|\\\\.|[^\\{}[:space:]]+"
+	xfuncname = "^(\\\\(sub)*section\\{.*)$"
+;[difftool "sourcetree"]
+	;cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	;path = 
+;[mergetool "sourcetree"]
+	;cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	;trustExitCode = true
