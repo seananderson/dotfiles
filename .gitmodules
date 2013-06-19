@@ -1,9 +1,11 @@
 [submodule "oh-my-zsh"]
 	path = oh-my-zsh
 	url = git@github.com:robbyrussell/oh-my-zsh.git
+  ignore = dirty
 [submodule "vim/bundle/writegood.vim"]
 	path = vim/bundle/writegood.vim
 	url = git@github.com:davidbeckingsale/writegood.vim.git
+  ignore = dirty
 [submodule "vim/bundle/screen"]
 	path = vim/bundle/screen
 	url = git@github.com:ervandew/screen.git
@@ -13,6 +15,7 @@
 [submodule "vim/bundle/Align"]
 	path = vim/bundle/Align
 	url = git@github.com:vim-scripts/Align.git
+  ignore = dirty
 [submodule "vim/bundle/LaTeX-Box"]
 	path = vim/bundle/LaTeX-Box
 	url = git@github.com:LaTeX-Box-Team/LaTeX-Box.git
@@ -22,6 +25,7 @@
 [submodule "vim/bundle/YankRing.vim"]
 	path = vim/bundle/YankRing.vim
 	url = git@github.com:vim-scripts/YankRing.vim.git
+  ignore = dirty
 [submodule "vim/bundle/ctrlp.vim"]
 	path = vim/bundle/ctrlp.vim
 	url = git@github.com:kien/ctrlp.vim.git
@@ -43,6 +47,7 @@
 [submodule "vim/bundle/vim-pandoc"]
 	path = vim/bundle/vim-pandoc
 	url = git@github.com:vim-pandoc/vim-pandoc.git
+  ignore = dirty
 [submodule "vim/bundle/vim-powerline"]
 	path = vim/bundle/vim-powerline
 	url = git@github.com:Lokaltog/vim-powerline.git
@@ -61,6 +66,7 @@
 [submodule "vim/bundle/vim-multiple-cursors"]
 	path = vim/bundle/vim-multiple-cursors
 	url = git@github.com:terryma/vim-multiple-cursors.git
+  ignore = dirty
 [submodule "vim/bundle/vim-R-plugin"]
 	path = vim/bundle/vim-R-plugin
 	url = git@github.com:vim-scripts/Vim-R-plugin.git
