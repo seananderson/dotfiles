@@ -8,7 +8,9 @@ set nocompatible
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pathogen
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-execute pathogen#infect()
+call pathogen#infect()
+call pathogen#helptags()
+
 
 " To disable a plugin, add it's bundle name to the following list
 let g:pathogen_disabled = []
@@ -34,8 +36,8 @@ nmap :W :w
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indentation
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype indent on
 filetype on
+filetype indent on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching preferences
@@ -87,7 +89,7 @@ set confirm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Visual setup
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syntax on
+syntax enable
 
 set nocursorline
 
@@ -137,6 +139,7 @@ au GUIEnter * set lines=58 columns=82
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General setup
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype plugin on
 " Wrap only at word boundaries
 set lbr
 
@@ -757,28 +760,28 @@ nmap <C-S> :update<CR>
 nmap <localleader>w :update<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vim R Plugin
+" Vim R Plugin (keyword: stats)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let vimrplugin_conquevsplit = 1
-let ConqueTerm_Color = 0 
-" To open R in terminal rather than RGui (only necessary on OS X)
-let vimrplugin_applescript = 0
-let vimrplugin_screenplugin = 1
-" For tmux support
-let g:ScreenImpl = 'Tmux'
-let vimrplugin_screenvsplit = 1 " For vertical tmux split
-let g:ScreenShellInitialFocus = 'shell' 
-" instruct to use your own .screenrc file
-let g:vimrplugin_noscreenrc = 1
-let vimrplugin_conqueplugin = 0
-
-let vimrplugin_underscore = 0
-let r_indent_align_args = 0
-let vimrplugin_tmux = 1
-let g:ScreenImpl = 'Tmux'
-map <silent> <Leader>rh :call RAction("head")<CR>
-map <silent> <LocalLeader>rk :call RAction("levels")<CR>
-nmap <Leader>xx <Plug>RToggleComment
+" let vimrplugin_conquevsplit = 1
+" let ConqueTerm_Color = 0 
+" " To open R in terminal rather than RGui (only necessary on OS X)
+ let vimrplugin_applescript = 1
+" let vimrplugin_screenplugin = 1
+" " For tmux support
+" let g:ScreenImpl = 'Tmux'
+" let vimrplugin_screenvsplit = 1 " For vertical tmux split
+" let g:ScreenShellInitialFocus = 'shell' 
+" " instruct to use your own .screenrc file
+" let g:vimrplugin_noscreenrc = 1
+" let vimrplugin_conqueplugin = 0
+" 
+" let vimrplugin_underscore = 0
+" let r_indent_align_args = 0
+" let vimrplugin_tmux = 1
+" let g:ScreenImpl = 'Tmux'
+" map <silent> <Leader>rh :call RAction("head")<CR>
+" map <silent> <LocalLeader>rk :call RAction("levels")<CR>
+" nmap <Leader>xx <Plug>RToggleComment
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
