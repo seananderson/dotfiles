@@ -71,6 +71,9 @@ alias bugaboo-fs='ssh anderson@bugaboo-fs.westgrid.ca'
 alias vacuummail='sqlite3 ~/Library/Mail/V2/MailData/Envelope\ Index vacuum;'
 alias untar='tar -zxvf'
 alias pine="alpine"
+alias oi='offlineimap -q'
+alias oii='offlineimap -qf INBOX'
+alias oif='offlineimap'
 
 alias ..='cd ..'
 alias ...='cd ../..'

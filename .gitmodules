@@ -73,3 +73,6 @@
 [submodule "vim/bundle/hexHighlight.vim"]
 	path = vim/bundle/hexHighlight.vim
 	url = git@github.com:vim-scripts/hexHighlight.vim.git
+[submodule "vim/bundle/tlib_vim"]
+	path = vim/bundle/tlib_vim
+	url = git@github.com:tomtom/tlib_vim.git
