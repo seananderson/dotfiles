@@ -4,16 +4,11 @@
 " This setting prevents vim from emulating the original vi's bugs and limitations
 set nocompatible
 "
+
+execute pathogen#infect()
 " To disable a plugin, add it's bundle name to the following list
 let g:pathogen_disabled = []
-if !has('gui_running')
-    call add(g:pathogen_disabled, 'fuzzy_file_finder')
-endif
 
-filetype off 
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
-filetype on
 
 let mapleader = ","
 let g:mapleader = ","
