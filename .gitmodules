@@ -46,3 +46,18 @@
 [submodule "vim/bundle/vim-powerline"]
 	path = vim/bundle/vim-powerline
 	url = git@github.com:Lokaltog/vim-powerline.git
+[submodule "vim/bundle/vim-obsession"]
+	path = vim/bundle/vim-obsession
+	url = git@github.com:tpope/vim-obsession.git
+[submodule "vim/bundle/vim-startify"]
+	path = vim/bundle/vim-startify
+	url = git@github.com:mhinz/vim-startify.git
+[submodule "vim/bundle/vim-snipmate"]
+	path = vim/bundle/vim-snipmate
+	url = git@github.com:garbas/vim-snipmate.git
+[submodule "vim/bundle/vim-indent-object"]
+	path = vim/bundle/vim-indent-object
+	url = git@github.com:michaeljsmith/vim-indent-object.git
+[submodule "vim/bundle/vim-multiple-cursors"]
+	path = vim/bundle/vim-multiple-cursors
+	url = git@github.com:terryma/vim-multiple-cursors.git
