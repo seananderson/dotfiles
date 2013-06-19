@@ -730,9 +730,13 @@ noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 " Keep undo history across sessions, by storing in file.
 " Only works all the time.
 "
-silent !mkdir ~/.vim/backups > /dev/null 2>&1
-set undodir=~/.vim/backups
-set undofile
+
+if version >= 730
+  silent !mkdir ~/.vim/backups > /dev/null 2>&1
+  set undodir=~/.vim/backups
+  set undofile
+endif
+
 
 " move lines up or down easily:
 nnoremap <silent> <leader>k :m-2<CR>==
