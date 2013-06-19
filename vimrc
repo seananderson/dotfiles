@@ -765,18 +765,18 @@ nmap <localleader>w :update<CR>
 " let vimrplugin_conquevsplit = 1
 " let ConqueTerm_Color = 0 
 " " To open R in terminal rather than RGui (only necessary on OS X)
- let vimrplugin_applescript = 1
+let vimrplugin_applescript = 1
 " let vimrplugin_screenplugin = 1
 " " For tmux support
-" let g:ScreenImpl = 'Tmux'
-" let vimrplugin_screenvsplit = 1 " For vertical tmux split
+let g:ScreenImpl = 'Tmux'
+let vimrplugin_screenvsplit = 1 " For vertical tmux split
 " let g:ScreenShellInitialFocus = 'shell' 
 " " instruct to use your own .screenrc file
-" let g:vimrplugin_noscreenrc = 1
+let g:vimrplugin_noscreenrc = 1
 " let vimrplugin_conqueplugin = 0
 " 
 " let vimrplugin_underscore = 0
-" let r_indent_align_args = 0
+let r_indent_align_args = 0
 " let vimrplugin_tmux = 1
 " let g:ScreenImpl = 'Tmux'
 " map <silent> <Leader>rh :call RAction("head")<CR>
