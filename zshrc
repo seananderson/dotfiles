@@ -62,6 +62,7 @@ export R_HISTFILE=~/Dropbox/.Rhistory
 export BIBINPUTS=".:~/Library/texmf/BIBINPUTS"
 
 alias linode="ssh -p 42 sean@173.230.131.228"
+alias sundia="ssh -p 42 sean@173.230.131.228"
 alias ms='cd ~/Dropbox/ms/;lt'
 alias cluster='ssh sean@cluster.mathstat.dal.ca'
 alias baseline='ssh sean@baseline.stanford.edu'
