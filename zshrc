@@ -63,7 +63,7 @@ export BIBINPUTS=".:~/Library/texmf/BIBINPUTS"
 
 alias linode="ssh -p 42 sean@173.230.131.228"
 alias sundia="ssh -p 42 sean@173.230.131.228"
-alias ms='cd ~/Dropbox/ms/;lt'
+alias ms='cd ~/Dropbox/ms/'
 alias cluster='ssh sean@cluster.mathstat.dal.ca'
 alias baseline='ssh sean@baseline.stanford.edu'
 alias bugaboo='ssh anderson@bugaboo.westgrid.ca'
@@ -71,9 +71,14 @@ alias bugaboo-fs='ssh anderson@bugaboo-fs.westgrid.ca'
 alias vacuummail='sqlite3 ~/Library/Mail/V2/MailData/Envelope\ Index vacuum;'
 alias untar='tar -zxvf'
 alias pine="alpine"
-alias oi='offlineimap -q'
-alias oii='offlineimap -qf INBOX'
+alias oi='offlineimap -qf INBOX'
+alias oiq='offlineimap -q'
 alias oif='offlineimap'
+alias mt='mutt'
+alias src='cd ~/src/'
+alias ss3='cd ~/src/ss3sim/'
+alias db='cd ~/Dropbox'
+alias dot='cd dotfiles'
 
 alias ..='cd ..'
 alias ...='cd ../..'
