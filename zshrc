@@ -6,7 +6,9 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="miloshadzic"
-ZSH_THEME="candy"
+#ZSH_THEME="candy"
+ZSH_THEME="candy-kingdom"
+#ZSH_THEME="ys"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -41,7 +43,15 @@ ZSH_THEME="candy"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git tmux textmate battery brew vi-mode)
+plugins=(git git-extras tmux battery brew osx web-search autojump)
+
+
+# Automatically start a tmux session upon logging in:
+ZSH_TMUX_AUTOSTART="false"
+
+# When running tmux automatically connect to the currently running tmux session
+# if it exits, otherwise start a new session
+ZSH_TMUX_AUTOCONNECT="false"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -78,21 +88,25 @@ alias mt='mutt'
 alias src='cd ~/src/'
 alias ss3='cd ~/src/ss3sim/'
 alias db='cd ~/Dropbox'
-alias dot='cd dotfiles'
+alias dot='cd ~/dotfiles'
+alias ezsh='vi ~/.zshrc'
+alias szsh='source ~/.zshrc'
 
-alias ..='cd ..'
 alias ...='cd ../..'
 
 # The 'ls' family (this assumes you use the GNU ls)
+
+alias l='ls'               
 alias la='ls -Al'               # show hidden files
 # alias ls='ls -hF --color' # add colors for filetype recognition
 # alias lx='ls -lXB'              # sort by extension
-alias lk='ls -lSr'              # sort by size
+alias lk='ls -lSrh'              # sort by size
 alias lc='ls -lcr'        # sort by change time
 alias lu='ls -lur'        # sort by access time
 alias lr='ls -lR'               # recursive ls
-alias lt='ls -ltr'              # sort by date
+alias lt='ls -ltrh'              # sort by date
 alias lm='ls -al |more'         # pipe through 'more'
 # alias tree='tree -Csu'        # nice alternative to 'ls'
 alias tree='find . -print | sed -e "s;[^/]*/;|____;g;s;____|; |;g"'
+
 
