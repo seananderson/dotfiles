@@ -1,0 +1,24 @@
+[submodule "oh-my-zsh"]
+	path = oh-my-zsh
+	url = git@github.com:robbyrussell/oh-my-zsh.git
+[submodule "vim/bundle/writegood.vim"]
+	path = vim/bundle/writegood.vim
+	url = git@github.com:davidbeckingsale/writegood.vim.git
+[submodule "vim/bundle/screen"]
+	path = vim/bundle/screen
+	url = git@github.com:ervandew/screen.git
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
+	url = git@github.com:scrooloose/nerdtree.git
+[submodule "vim/bundle/Align"]
+	path = vim/bundle/Align
+	url = git@github.com:vim-scripts/Align.git
+[submodule "vim/bundle/LaTeX-Box"]
+	path = vim/bundle/LaTeX-Box
+	url = git@github.com:LaTeX-Box-Team/LaTeX-Box.git
+[submodule "vim/bundle/ScrollColors"]
+	path = vim/bundle/ScrollColors
+	url = git@github.com:vim-scripts/ScrollColors.git
+[submodule "vim/bundle/YankRing.vim"]
+	path = vim/bundle/YankRing.vim
+	url = git@github.com:vim-scripts/YankRing.vim.git
