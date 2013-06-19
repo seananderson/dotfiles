@@ -5,7 +5,7 @@
 #ui = quiet
 ui = basic
 accounts = seananderson
-pythonfile=/Users/seananderson/offlineimap.py
+pythonfile=/Users/seananderson/.offlineimap/offlineimap.py
 fsync = False
 
 [Account seananderson]

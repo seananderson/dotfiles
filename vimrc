@@ -782,7 +782,6 @@ nmap <Leader>xx <Plug>RToggleComment
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 colorscheme solarized
-se bg=light
 se nu
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim/
 set t_Co=256
@@ -790,6 +789,12 @@ let g:solarized_termcolors = 16
 let g:solarized_visibility = "normal"
 let g:solarized_contrast = "normal"
 let g:solarized_termtrans = 1
+
+if has('gui_running')
+  set background=light
+else
+  set background=dark
+endif
 
 " set background colour based on time of day:
 "if strftime("%H") < 18
@@ -855,3 +860,4 @@ let NERDTreeIgnore=['\.pdf$', '\~$', '\.docx$', '\.wmv$', '\.tar.gz$', '\.ppt$',
 "http://stackoverflow.com/questions/1447334/how-do-you-add-nerdtree-to-your-vimrc
 " autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
+
