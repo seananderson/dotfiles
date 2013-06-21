@@ -26,7 +26,7 @@ unset askbcc               # don't prompt for bcc's
 unset askcc                # don't prompt for cc's
 unset beep                 # don't beep on error
 unset beep_new             # don't beep on new message
-unset text_flowed            # send format flowed messages
+unset text_flowed            # don't send format flowed messages
 
 set use_from
 
@@ -96,18 +96,19 @@ bind index gg       first-entry
 bind index G        last-entry
 
 bind index R        group-reply
+bind index a        group-reply
+bind index A        group-reply
 bind index <tab>    sync-mailbox
 bind index u    sync-mailbox
 bind index \Cf  collapse-thread
 bind index o display-message
 
 # Ctrl-R to mark all as read
-macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+#macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
 
 # Sync email
 macro index \CO "<shell-escape>offlineimap -q<enter>"           "run offlineimap to sync all mail"
 macro index O "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
-
 
 # Saner copy/move dialogs
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
@@ -115,7 +116,7 @@ macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 macro pager M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 
 # Pager View Options ---------------------------------
-set pager_index_lines = 4  # number of index lines to show
+set pager_index_lines = 0  # number of index lines to show
 set pager_context = 3      # number of context lines to show
 set pager_stop             # don't go to next message automatically
 set menu_scroll            # scroll in menus
