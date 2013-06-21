@@ -70,6 +70,7 @@
 [submodule "vim/bundle/vim-R-plugin"]
 	path = vim/bundle/vim-R-plugin
 	url = git@github.com:vim-scripts/Vim-R-plugin.git
+  ignore = dirty
 [submodule "vim/bundle/hexHighlight.vim"]
 	path = vim/bundle/hexHighlight.vim
 	url = git@github.com:vim-scripts/hexHighlight.vim.git
