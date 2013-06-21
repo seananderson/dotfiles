@@ -1,7 +1,3 @@
-[submodule "oh-my-zsh"]
-	path = oh-my-zsh
-	url = git@github.com:robbyrussell/oh-my-zsh.git
-  ignore = dirty
 [submodule "vim/bundle/writegood.vim"]
 	path = vim/bundle/writegood.vim
 	url = git@github.com:davidbeckingsale/writegood.vim.git
@@ -77,3 +73,6 @@
 [submodule "vim/bundle/tlib_vim"]
 	path = vim/bundle/tlib_vim
 	url = git@github.com:tomtom/tlib_vim.git
+[submodule "oh-my-zsh"]
+	path = oh-my-zsh
+	url = git@github.com:seananderson/oh-my-zsh.git
