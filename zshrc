@@ -93,6 +93,7 @@ alias db='cd ~/Dropbox'
 alias dot='cd ~/dotfiles'
 alias ezsh='vi ~/.zshrc'
 alias szsh='source ~/.zshrc'
+alias sca='cd ~/Dropbox/seananderson.github.com/'
 
 alias ...='cd ../..'
 
