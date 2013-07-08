@@ -51,6 +51,7 @@ folderfilter = lambda folder: folder not in ['Earth2Ocean',
                                              'SFU',
                                              'Fulbright',
                                              'SFM spambot',
+                                             'SMF spambot2',
                                              '[Gmail]/Important',
                                              '[Gmail]/Spam',
                                              'sent-mail'
