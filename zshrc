@@ -45,7 +45,7 @@ ZSH_THEME="fino-noruby"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-extras tmux battery brew osx web-search autojump)
+plugins=(git git-extras battery brew osx web-search autojump)
 
 
 # Automatically start a tmux session upon logging in:
