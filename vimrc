@@ -93,7 +93,7 @@ syntax enable
 
 set nocursorline
 
-set anti enc=utf-8 gfn=Menlo:h12
+set anti enc=utf-8 gfn=Menlo:h14
 "set anti enc=utf-8 gfn=Inconsolata:h14
 "set anti enc=utf-8 gfn=ConsolasforBBEdit:h13
 "set anti enc=utf-8 gfn=Envy\ Code\ R:h12
@@ -104,8 +104,8 @@ set anti enc=utf-8 gfn=Menlo:h12
 "set anti enc=utf-8 gfn=DejaVu\ Sans\ Mono:h12
 
 set linespace=3
-set guioptions-=T
-""set guioptions=ar "a means try and add copied text to system register
+"set guioptions-=T
+"set guioptions=ar "a means try and add copied text to system register
 
 " By default, Vim displays the current line of each minimized file,
 " which isn't much help and takes up too 
@@ -131,7 +131,7 @@ if exists('$TMUX')
 endif
 
 " set the gui options the way I like
-set guioptions=ace
+set guioptions=acer
 
 " The default screen size on start up
 au GUIEnter * set lines=58 columns=82
@@ -237,22 +237,22 @@ set nowb
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " If there is no fold at current line, just moves forward.
 " If it is present, reverse it's state.
-fun! ToggleFold()
-if foldlevel('.') == 0
-normal! l
-else
-if foldclosed('.') < 0
-. foldclose
-else
-. foldopen
-endif
-endif
-" Clear status line
-echo
-endfun
+" fun! ToggleFold()
+" if foldlevel('.') == 0
+" normal! l
+" else
+" if foldclosed('.') < 0
+" . foldclose
+" else
+" . foldopen
+" endif
+" endif
+" " Clear status line
+" echo
+" endfun
 
 " Map this function to C-f key.
-noremap <C-f> :call ToggleFold()<CR>
+" noremap <C-f> :call ToggleFold()<CR>
 
 set foldmethod=indent   "fold based on indent
 set foldnestmax=3       "deepest fold is 3 levels
@@ -334,7 +334,9 @@ vmap ,t :s/\<\(.\)\(\k*\)\>/\l\1\L\2/g<CR><CR>
 "nmap <silent> ,w :set invwrap<CR>:set wrap?<CR>
 
 " Underline the current line with '='
-nmap <silent> ,ul :t.\|s/./=/g\|set nohls<cr>
+nmap <silent> ,u1 :t.\|s/./=/g\|set nohls<cr>
+
+nmap <silent> ,u2 :t.\|s/./-/g\|set nohls<cr>
 
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=2048
@@ -627,7 +629,7 @@ let g:pandoc_no_empty_implicits = 1
 "Due to the way they are handled, span elements (emphasis, bold, tt, subscript
 "and superscript) can cause slowdowns. If you desire to disable highlighting of
 "them altogether, set g:pandoc_no_spans:
-let g:pandoc_no_spans = 1
+let g:pandoc_no_spans = 0
 "Note that this will also disable highlighting of embedded html, because
 "otherwise stuff like <code> (which is unformatted) is detected as containing
 "html that doesn't end.
@@ -678,11 +680,10 @@ autocmd BufEnter * silent! lcd %:p:h
 " Distraction free writing
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " see https://github.com/laktek/distraction-free-writing-vim
-let g:fullscreen_colorscheme = "iawriter"
+let g:fullscreen_colorscheme = "solarized"
 let g:fullscreen_font = "Cousine:h18"
 let g:normal_colorscheme = "solarized"
-let g:normal_font="Inconsolata:h14"
-
+let g:normal_font="Menlo:h14"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LaTeX
@@ -775,7 +776,7 @@ let vimrplugin_screenvsplit = 1 " For vertical tmux split
 let g:vimrplugin_noscreenrc = 1
 " let vimrplugin_conqueplugin = 0
 " 
-" let vimrplugin_underscore = 0
+let vimrplugin_underscore = 1
 let r_indent_align_args = 0
 " let vimrplugin_tmux = 1
 " let g:ScreenImpl = 'Tmux'
@@ -868,3 +869,42 @@ let NERDTreeIgnore=['\.pdf$', '\~$', '\.docx$', '\.wmv$', '\.tar.gz$', '\.ppt$',
 " autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
+nmap <C-c> <Leader>c<space>
+
+" wrap this sentence
+nmap ,ws visJ0)i<CR><ESC>
+se rnu
+
+" markdown
+set com+=fb:*
+set com+=fb:-
+
+"autocmd FileType pandoc setlocal fo=tcqwanj
+"autocmd FileType pandoc setlocal tw=78
+"se bg=dark
+
+
+" from http://alols.github.io/2012/11/07/writing-prose-with-vim/
+command! Prose setlocal nolist wrap tw=72 fo=t1njq nonu nornu|
+            \ setlocal com+=fb:*|
+            \ setlocal com+=fb:-|
+            "\ set linespace=4|
+            "\ augroup PROSE|
+            "\   autocmd InsertEnter <buffer> set fo+=a|
+            "\   autocmd InsertLeave <buffer> set fo-=a|
+            "\ augroup END
+
+command! Code setlocal nospell list nowrap|
+            "\ set linespace=3|
+            \ tw=72 fo=cqr1 showbreak=… rnu|
+            \ silent! autocmd! PROSE * <buffer>
+
+call togglebg#map("<F5>")
+
+"autocmd FileType pandoc Prose
+
+let g:pandoc_no_folding = 0
+
+nnoremap <C-f> za
+
+autocmd FileType pandoc setlocal formatoptions=nbcrq
