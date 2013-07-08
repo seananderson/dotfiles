@@ -873,7 +873,7 @@ nmap <C-c> <Leader>c<space>
 
 " wrap this sentence
 nmap ,ws visJ0)i<CR><ESC>
-se rnu
+"se rnu
 
 " markdown
 set com+=fb:*
