@@ -107,8 +107,10 @@ bind index o display-message
 #macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
 
 # Sync email
-macro index \CO "<shell-escape>offlineimap -q<enter>"           "run offlineimap to sync all mail"
-macro index O "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
+#macro index \CO "<shell-escape>offlineimap -q<enter>"           "run offlineimap to sync all mail"
+macro index \CO "<shell-escape>mailsync.sh<enter>"           "run offlineimap to sync all mail"
+#macro index O "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
+macro index O "<shell-escape>mailsync-inbox.sh<enter>" "run offlineimap to sync inbox"
 
 # Saner copy/move dialogs
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
