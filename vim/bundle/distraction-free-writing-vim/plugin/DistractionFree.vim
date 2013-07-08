@@ -29,13 +29,13 @@ function! DistractionFreeWriting()
 		set lines=62 columns=85  				 " size of the editable area
 		set columns=85  				 " size of the editable area
 		set linespace=8 									 " spacing between lines
-    set fuoptions=background:#00f5f6f6 " bakground color
-		"set fuoptions=background:#00fdf6e3 " bakground color
+    "set fuoptions=background:#00f5f6f6 " bakground color
+    set fuoptions=background:#00fdf6e3 " bakground color
 		set guioptions-=r 								 " remove righ scrollbar
 		set laststatus=0 									 " don't show status line
 		set noruler 											 " don't show ruler
 		set fullscreen 										 " go to fullscreen editing mode
-    set nonumber
+    "set nonumber
 		"set linebreak 										 " break the lines on words
 endfunction
 
