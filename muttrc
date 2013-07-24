@@ -62,24 +62,24 @@ hdr_order from: to: cc: date: subject:  # and in this order
 # Account Settings -----------------------------------
 
 # Default inbox.
-set spoolfile = "+gmail/INBOX"
+set spoolfile = "+sean-seananderson.ca/inbox"
 
 # Alternate email addresses.
 alternates sean@seananderson.ca sean_anderson@sfu.ca sean@diabolo.ca scanders@sfu.ca sc2ander@xcskier.com sean.charles.anderson@gmail.com sean@dal.ca sean.anderson@dal.ca
 
 # Mailboxes to show in the sidebar.
-mailboxes +gmail/INBOX \
-          +gmail/toreply \
-          +gmail/robots \
-          +gmail/archive \
-          +gmail/sent \
-          +gmail/drafts \
-          +gmail/flagged \
-          +gmail/trash \
+mailboxes +sean-seananderson.ca/inbox \
+          +sean-seananderson.ca/robots \
+          +sean-seananderson.ca/toreply \
+          +sean-seananderson.ca/archive \
+          +sean-seananderson.ca/sent \
+          +sean-seananderson.ca/flagged \
+          +sean-seananderson.ca/trash \
+          +sean-seananderson.ca/junk \
 
 # Other special folders.
-set mbox      = "+gmail/archive"
-set postponed = "+gmail/drafts"
+set mbox      = "+sean-seananderson.ca/archive"
+set postponed = "+sean-seananderson.ca/drafts"
 
 # Index View Options ---------------------------------
 #set date_format = "%m/%d"
@@ -191,13 +191,13 @@ source /Users/seananderson/.mutt/mutt-colors-solarized-light-16.muttrc
 # custom settings:
 bind index,pager c mail
 
-macro index,pager gi  "<change-folder> =gmail/INBOX<enter>"  "go to inbox"
-macro index,pager gt  "<change-folder> =gmail/sent<enter>"  "go to sent"
-macro index,pager gs  "<change-folder> =gmail/flagged<enter>"  "go to starred"
-macro index,pager gb  "<change-folder> =gmail/robots<enter>"  "go to bulk"
-macro index,pager gr  "<change-folder> =gmail/toreply<enter>"  "go to toreply"
-macro index,pager gd  "<change-folder> =gmail/drafts<enter>"  "go to drafts"
-macro index,pager ga  "<change-folder> =gmail/archive<enter>"  "go to archive"
+macro index,pager gi  "<change-folder> =sean-seananderson.ca/inbox<enter>"  "go to inbox"
+macro index,pager gt  "<change-folder> =sean-seananderson.ca/sent<enter>"  "go to sent"
+macro index,pager gs  "<change-folder> =sean-seananderson.ca/flagged<enter>"  "go to starred"
+macro index,pager gb  "<change-folder> =sean-seananderson.ca/robots<enter>"  "go to bulk"
+macro index,pager gr  "<change-folder> =sean-seananderson.ca/toreply<enter>"  "go to toreply"
+macro index,pager gd  "<change-folder> =sean-seananderson.ca/drafts<enter>"  "go to drafts"
+macro index,pager ga  "<change-folder> =sean-seananderson.ca/archive<enter>"  "go to archive"
 macro index,pager gl "<change-folder>"
 
 bind pager u exit

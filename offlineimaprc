@@ -1,8 +1,4 @@
 [general]
-#ui = TTY.TTYUI
-#ui = TTYUI
-#ui = Blinkenlights
-#ui = quiet
 ui = basic
 accounts = seananderson
 pythonfile=/Users/seananderson/.offlineimap/offlineimap.py
@@ -19,44 +15,49 @@ status_backend = sqlite
 # only changes were to IMAP flags
 #quick = 10
 
-
 [Repository seananderson-local]
 type = Maildir
-localfolders = ~/.mail/gmail
-nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
-                            'sent':    '[Gmail]/Sent Mail',
-                            'flagged': '[Gmail]/Starred',
-                            'trash':   '[Gmail]/Trash',
-                            'archive': '[Gmail]/All Mail',
-                            'robots':  '_Robots',
+localfolders = ~/.mail/sean-seananderson.ca
+nametrans = lambda folder: {'drafts': 'INBOX.Drafts',
+                            'sent': 'INBOX.Sent Items',
+                            'archive': 'INBOX.Archive',
+                            'trash': 'INBOX.Trash',
+                            'spam': 'INBOX.Junk Mail',
+                            'inbox': 'INBOX',
+														'toreply': 'To Reply',
+														'robots': 'Robots'
                             }.get(folder, folder)
 
 [Repository seananderson-remote]
-cert_fingerprint=b0ba392bba326e6feb1add4d04fa0fb86cd173fa
-maxconnections = 4
-type = Gmail
-remoteuser = sean.charles.anderson@gmail.com
-remotepasseval = get_keychain_pass(account="sean.charles.anderson@gmail.com", server="imap.gmail.com")
+type = IMAP
+remotehost = mail.messagingengine.com
+remoteport = 993
+maxconnections = 5
+ssl = yes
+cert_fingerprint=fa86c1ca2d4f805e8fe7b8e7076a3ad2ccc52bb4
+remoteuser = seananderson@fastmail.fm
+remotepasseval = get_keychain_pass(account="seananderson@fastmail.fm", server="mail.messagingengine.com")
 realdelete = no
-nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
-                            '[Gmail]/Sent Mail': 'sent',
-                            '[Gmail]/Starred':   'flagged',
-                            '[Gmail]/Trash':     'trash',
-                            '[Gmail]/All Mail':  'archive',
-                            '_Robots':  'robots',
+nametrans = lambda folder: {'INBOX.Drafts': 'drafts',
+                            'INBOX.Sent Items': 'sent',
+                            'INBOX.Archive': 'archive',
+                            'INBOX.Trash': 'trash',
+                            'INBOX.Junk Mail': 'spam',
+                            'INBOX': 'inbox',
+														'To Reply': 'toreply',
+														'Robots': 'robots'
                             }.get(folder, folder)
 
-folderfilter = lambda folder: folder not in ['Earth2Ocean',
-                                             'SAFSsocial',
-                                             'SFU',
-                                             'Fulbright',
-                                             'SFM spambot',
-                                             'SMF spambot2',
-                                             '[Gmail]/Important',
-                                             '[Gmail]/Spam',
-                                             'sent-mail'
-                                             ]
-
+#folderfilter = lambda folder: folder not in ['Earth2Ocean',
+                                             #'SAFSsocial',
+                                             #'SFU',
+                                             #'Fulbright',
+                                             #'SFM spambot',
+                                             #'SMF spambot2',
+                                             #'[Gmail]/Important',
+                                             #'[Gmail]/Spam',
+                                             #'sent-mail'
+                                             #]
 
 # In between synchronisations, OfflineIMAP can monitor mailboxes for new
 # messages using the IDLE command. If you want to enable this, specify here
