@@ -776,7 +776,8 @@ let vimrplugin_screenvsplit = 1 " For vertical tmux split
 let g:vimrplugin_noscreenrc = 1
 " let vimrplugin_conqueplugin = 0
 " 
-let vimrplugin_underscore = 1
+   let vimrplugin_assign = 0
+   let vimrplugin_assign_map = "_"
 let r_indent_align_args = 0
 " let vimrplugin_tmux = 1
 " let g:ScreenImpl = 'Tmux'
