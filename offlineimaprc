@@ -1,5 +1,6 @@
 [general]
 ui = basic
+#ui = Blinkenlights
 accounts = seananderson
 pythonfile=/Users/seananderson/.offlineimap/offlineimap.py
 fsync = False
@@ -24,8 +25,8 @@ nametrans = lambda folder: {'drafts': 'INBOX.Drafts',
                             'trash': 'INBOX.Trash',
                             'spam': 'INBOX.Junk Mail',
                             'inbox': 'INBOX',
-														'toreply': 'To Reply',
-														'robots': 'Robots'
+														'toreply': 'INBOX.To Reply',
+														'robots': 'INBOX.Robots'
                             }.get(folder, folder)
 
 [Repository seananderson-remote]
@@ -44,11 +45,11 @@ nametrans = lambda folder: {'INBOX.Drafts': 'drafts',
                             'INBOX.Trash': 'trash',
                             'INBOX.Junk Mail': 'spam',
                             'INBOX': 'inbox',
-														'To Reply': 'toreply',
-														'Robots': 'robots'
+														'INBOX.To Reply': 'toreply',
+														'INBOX.Robots': 'robots'
                             }.get(folder, folder)
 
-#folderfilter = lambda folder: folder not in ['Earth2Ocean',
+folderfilter = lambda folder: folder not in ['INBOX.Junk Mail',
                                              #'SAFSsocial',
                                              #'SFU',
                                              #'Fulbright',
@@ -57,7 +58,7 @@ nametrans = lambda folder: {'INBOX.Drafts': 'drafts',
                                              #'[Gmail]/Important',
                                              #'[Gmail]/Spam',
                                              #'sent-mail'
-                                             #]
+                                             ]
 
 # In between synchronisations, OfflineIMAP can monitor mailboxes for new
 # messages using the IDLE command. If you want to enable this, specify here
