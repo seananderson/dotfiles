@@ -25,12 +25,13 @@ function! DistractionFreeWriting()
 		" (AmaruCoder)
 		exec "set gfn=".escape(g:fullscreen_font,' ')
 
-		set background=light
-		set lines=62 columns=85  				 " size of the editable area
+		set background=dark
+		set lines=92  				 " size of the editable area
 		set columns=85  				 " size of the editable area
 		set linespace=8 									 " spacing between lines
     "set fuoptions=background:#00f5f6f6 " bakground color
     set fuoptions=background:#00fdf6e3 " bakground color
+    "set fuoptions=background:#00002b36 " bakground color
 		set guioptions-=r 								 " remove righ scrollbar
 		set laststatus=0 									 " don't show status line
 		set noruler 											 " don't show ruler

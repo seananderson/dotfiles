@@ -198,18 +198,16 @@ macro index,pager gb  "<change-folder> =sean-seananderson.ca/robots<enter>"  "go
 macro index,pager gr  "<change-folder> =sean-seananderson.ca/toreply<enter>"  "go to toreply"
 macro index,pager gd  "<change-folder> =sean-seananderson.ca/drafts<enter>"  "go to drafts"
 macro index,pager ga  "<change-folder> =sean-seananderson.ca/archive<enter>"  "go to archive"
-macro index,pager gl "<change-folder>"
+macro index,pager gn  "<change-folder> =temporary/search<enter>"  "go to notmuch search results"
+macro index,pager gl "<change-folder>" "change to a folder"
+
+macro index,pager d "<save-message>=sean-seananderson.ca/trash<enter>" "move message to trash"
+macro index,pager y "<save-message>=sean-seananderson.ca/archive<enter>" "move message to archive"
+macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/.mail/temporary/search<enter><change-folder-readonly>+temporary/search<enter>" "search mail (using notmuch)"
 
 bind pager u exit
-
 bind index $ sort-mailbox
 bind index % sort-reverse
-
-macro index,pager d "<save-message>=sean-seananderson.ca/trash<enter>"
-#macro index,pager y "<enter-command>unset trash\n <delete-message>" "Gmail archive message"
-bind index,pager y delete-message
-
-macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/.mail/temporary/search<enter><change-folder-readonly>+temporary/search<enter>" "search mail (using notmuch)"
 
 
 set reverse_name=yes
