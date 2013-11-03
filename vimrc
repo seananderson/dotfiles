@@ -91,7 +91,6 @@ set confirm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable
 
-set nocursorline
 
 set anti enc=utf-8 gfn=Menlo:h14
 "set anti enc=utf-8 gfn=Inconsolata:h14
@@ -103,7 +102,7 @@ set anti enc=utf-8 gfn=Menlo:h14
 "set anti enc=utf-8 gfn=Cousine:h14
 "set anti enc=utf-8 gfn=DejaVu\ Sans\ Mono:h12
 
-set linespace=3
+set linespace=4
 "set guioptions-=T
 "set guioptions=ar "a means try and add copied text to system register
 
@@ -131,10 +130,10 @@ if exists('$TMUX')
 endif
 
 " set the gui options the way I like
-set guioptions=acer
+set guioptions=ace
 
 " The default screen size on start up
-au GUIEnter * set lines=58 columns=82
+au GUIEnter * set lines=59 columns=84
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General setup
@@ -488,18 +487,9 @@ set path+=./**
 " bibtex command to open pdf Awesome
 "map gp yi{:!open ~/Papers/<C-r>"<cr><cr>
 
-" for Alpine
-"autocmd FileType mail set textwidth=100000
-autocmd FileType mail set tw=72
-"autocmd FileType mail set fo=tcoqwanl
-"autocmd FileType mail set fo+=w " format flowed
-autocmd FileType mail set noai
-autocmd FileType mail set expandtab
-"autocmd FileType mail set bg=light
-autocmd FileType mail colo solarized
-
-autocmd Filetype mail nmap Q gqip
-nmap Q gqip
+" Sean's magic re-wrap in normal mode but keep my cursor in the same place
+" command:
+nmap Q mxgqap`x
 
 " see: http://vim.wikia.com/wiki/Correct_format-flowed_email_function
 function! Fixflowed()
@@ -613,8 +603,6 @@ set smartindent
 
 nnoremap <localleader>mm :!make<CR><CR>
 
-set background=light
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pandoc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -629,7 +617,7 @@ let g:pandoc_no_empty_implicits = 1
 "Due to the way they are handled, span elements (emphasis, bold, tt, subscript
 "and superscript) can cause slowdowns. If you desire to disable highlighting of
 "them altogether, set g:pandoc_no_spans:
-let g:pandoc_no_spans = 0
+let g:pandoc_no_spans = 1
 "Note that this will also disable highlighting of embedded html, because
 "otherwise stuff like <code> (which is unformatted) is detected as containing
 "html that doesn't end.
@@ -637,15 +625,13 @@ let g:pandoc_no_spans = 0
 let g:pandoc_use_bibtool = 1
 
 let g:LuckyOutputFormat = 'markdown'
-let g:pandoc_no_folding = 0
+let g:pandoc_no_folding = 1
 
-let g:pandoc_use_hard_wraps = 0
+let g:pandoc_use_hard_wraps = 1
 let g:pandoc_auto_format = 0
 let g:pandoc_no_empty_implicits = 1
-let g:pandoc_no_spans = 1
-let g:pandoc_no_folding = 0
 let g:pandoc_bibfiles = ['/Users/seananderson/Dropbox/tex/ref3.bib']
-autocmd FileType pandoc setlocal nonu
+"autocmd FileType pandoc setlocal nonu
 
 " launch Marked.app
 nnoremap <leader>mk :silent !open -a Marked.app '%:p'<cr>
@@ -675,6 +661,8 @@ let g:yankring_replace_n_nkey = '<S-n>'
 au BufRead,BufNewFile *.Rnw  set filetype=rnoweb.tex
 
 autocmd BufEnter * silent! lcd %:p:h
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Distraction free writing
@@ -715,9 +703,6 @@ let rmd_syn_hl_chunk = 1
 set listchars=tab:▸\ ,eol:¬
 set nolist
 
-let g:molokai_original=0 "use the original molokai colouring
-
-
 "|nojoinspaces| allows you to use SHIFT-J in normal mode to join the next
 "line with the current line without adding extra unwanted spaces.
 setlocal nojoinspaces
@@ -725,8 +710,8 @@ setlocal nojoinspaces
 " Preserve indentation while pasting text from the OS X clipboard
 noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
- "https://github.com/Lokaltog/vim-powerline
- let g:ctrlp_cmd = 'CtrlPBuffer'
+" https://github.com/Lokaltog/vim-powerline
+let g:ctrlp_cmd = 'CtrlPBuffer'
 
 "nmap <S-CR> :CtrlPBuffer<CR>
 
@@ -750,7 +735,6 @@ nnoremap <silent> <leader>j :m+1<CR>==
 syntax spell toplevel
 
 set nohlsearch
-se nu
 
 " toggle line numbers:
 " http://stackoverflow.com/questions/762515/vim-remap-key-to-toggle-line-numbering
@@ -790,7 +774,6 @@ let r_indent_align_args = 0
 " Colors and aesthetics
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-colorscheme solarized
 se nu
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim/
 set t_Co=256
@@ -875,6 +858,8 @@ nmap <C-c> <Leader>c<space>
 " wrap this sentence
 nmap ,ws visJ0)i<CR><ESC>
 "se rnu
+"
+nmap ,wq mxvip:s/\. /\.\r/g<CR>`x
 
 " markdown
 set com+=fb:*
@@ -904,8 +889,56 @@ call togglebg#map("<F5>")
 
 "autocmd FileType pandoc Prose
 
-let g:pandoc_no_folding = 0
-
 nnoremap <C-f> za
 
+"autocmd VimEnter * set tw=78
+autocmd FileType pandoc set comments +=fb:-
+autocmd FileType pandoc set comments +=fb:> 
+
 autocmd FileType pandoc setlocal formatoptions=nbcrq
+
+autocmd VimEnter * autocmd FileType pandoc set tw=78
+autocmd VimEnter * autocmd FileType rnoweb set tw=78
+autocmd VimEnter * autocmd FileType r set tw=78
+autocmd VimEnter * autocmd FileType rnoweb setlocal formatoptions=nbcrq
+autocmd VimEnter * autocmd FileType mail set tw=72
+autocmd FileType mail set noai
+autocmd FileType mail set expandtab
+
+"colo atom
+colo solarized
+"set anti enc=utf-8 gfn=Menlo:h17
+se bg=dark
+set cc=0
+set nocursorline
+
+" Strip tailing whitespace on save:
+autocmd BufWritePre *.r :%s/\s\+$//e
+autocmd BufWritePre *.R :%s/\s\+$//e
+"autocmd BufWritePre *.tex :%s/\s\+$//e
+"autocmd BufWritePre *.Rnw :%s/\s\+$//e
+"autocmd BufWritePre *.md :%s/\s\+$//e
+autocmd BufWritePre *.Rmd :%s/\s\+$//e
+"
+
+" custom pandoc tidy function:
+nnoremap <leader>mt mx:%!pandoc -t markdown -s --columns=78<CR>`x
+"nnoremap <leader>mt mx:%!pandoc -t markdown -s --atx-headers --columns=78<CR>`x
+
+"func! WordProcessorMode() 
+  "setlocal formatoptions=1 
+  "setlocal noexpandtab 
+"set formatprg=par\ -w78qrg
+"set formatprg=""
+nmap ;p mx{!}par -w78qrg<CR>`x
+nmap Q mx{!}par -w78qrg<CR>`x
+map ,me mx{!}par -w72qrg<CR>`x
+  "setlocal wrap 
+  "setlocal linebreak 
+"endfu 
+"com! WP call WordProcessorMode()
+"
+
+colo base16-mocha
+se bg=light
+se nonu
