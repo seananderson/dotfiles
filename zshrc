@@ -71,6 +71,8 @@ for dir in \
   if [[ -d $dir ]]; then path+=$dir; fi
 done
 
+alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+
 export EDITOR=vim
 export R_HISTFILE=~/Dropbox/.Rhistory
 export BIBINPUTS=".:~/Library/texmf/BIBINPUTS"
@@ -88,8 +90,8 @@ alias pine="alpine"
 #alias oi='offlineimap -qf INBOX'
 #alias oiq='offlineimap -q'
 #alias oif='offlineimap'
-alias oii='mailsync-inbox.sh'
-alias oi='mailsync-quick.sh'
+alias oi='mailsync-inbox.sh'
+alias oiq='mailsync-quick.sh'
 alias oif='mailsync.sh'
 alias mt='mutt'
 alias src='cd ~/src/'
