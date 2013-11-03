@@ -26,6 +26,7 @@
 	branch = auto
 [core]
 	excludesfile = /Users/seananderson/.gitignore_global
+	autocrlf = input
 [diff "tex"]
 	wordRegex = "\\\\[a-zA-Z]+|[{}]|\\\\.|[^\\{}[:space:]]+"
 	xfuncname = "^(\\\\(sub)*section\\{.*)$"
@@ -35,3 +36,9 @@
 ;[mergetool "sourcetree"]
 	;cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	;trustExitCode = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
