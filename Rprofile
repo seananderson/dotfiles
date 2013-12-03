@@ -8,6 +8,12 @@
 
     if (interactive()) {
         suppressMessages(require(devtools))
+                  options(vimcom.verbose = 1,
+                        vimcom.texerrs = TRUE)
+       #suppressMessages(require(vimcom.plus))
+       #suppressMessages(require(setwidth))
+#       # If you can't install the vimcom.plus package, do:
+        #library(vimcom)
     }
 
 setHook(packageEvent("grDevices", "onLoad"),
@@ -16,24 +22,7 @@ setHook(packageEvent("grDevices", "onLoad"),
 
 
 
-# see http://stackoverflow.com/questions/1189759/expert-r-users-whats-in-your-rprofile
-# .Last <- function() {
-#         if (!any(commandArgs()=='--no-readline') && interactive()){
-#                 require(utils)
-#                 try(savehistory(Sys.getenv("R_HISTFILE")))
-#         }
-# }
-
 Sys.setenv(PATH=paste(Sys.getenv("PATH"),"/usr/texbin",sep=":")) # this adds /usr/texbin to the R path
-
-# lseq <- function (from, to, length.out)
-# # a sequence of values to predict on:
-# # from library(emdbook)
-# {
-#     exp(seq(log(from), log(to), length.out = length.out))
-# }
-
-#ni <- function(df){data.frame(VAR = names(df), COL = seq_along(df))}
 
 #from: http://stackoverflow.com/questions/1358003/tricks-to-manage-the-available-memory-in-an-r-session:
 # improved list of objects
@@ -93,3 +82,8 @@ lsos <- function(...) {
 #}
 
 options("help_type"="html")
+options("devtools.name"="Sean")
+options("devtools.cleandoc"=FALSE)
+options("devtools.desc.author"= 
+  "Sean C. Anderson <sean@seananderson> [aut, cre]")
+options("devtools.desc.license"="GPL-3")
