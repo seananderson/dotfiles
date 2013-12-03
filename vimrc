@@ -92,7 +92,7 @@ set confirm
 syntax enable
 
 
-set anti enc=utf-8 gfn=Menlo:h14
+set anti enc=utf-8 gfn=Menlo:h15
 "set anti enc=utf-8 gfn=Inconsolata:h14
 "set anti enc=utf-8 gfn=ConsolasforBBEdit:h13
 "set anti enc=utf-8 gfn=Envy\ Code\ R:h12
@@ -489,7 +489,7 @@ set path+=./**
 
 " Sean's magic re-wrap in normal mode but keep my cursor in the same place
 " command:
-nmap Q mxgqap`x
+"nmap Q mxgqap`x
 
 " see: http://vim.wikia.com/wiki/Correct_format-flowed_email_function
 function! Fixflowed()
@@ -518,35 +518,19 @@ endfunction
 autocmd Filetype mail command! Fixq call Fixflowed()
 autocmd Filetype mail autocmd BufWritePre <buffer> call Fixindented()
 
-
-iab Xsup (\textit{SI Methods})
-
-
 " nerdtree:
-map <F2> :NERDTreeToggle<CR>
-
-"nmap <leader>q1 :sort /.*\%1v/<cr>
-"nmap <leader>q2 :sort /.*\%2v/<cr>
-" For todo lists
-"nmap <C-Down> ddp<cr>
-"nmap <C-Up> ddkP<cr>
-"nmap <leader>q1 gg/Importance<cr><cr>jVGGk:sort /.*\%1v/<cr>
-"nmap <leader>q2 gg/Importance<cr><cr>jVGGk:sort /.*\%2v/<cr>
-
-"vmap <leader>q3 :sort /.*\%1v/<cr>
+map <F1> :NERDTreeToggle<CR>
 
 " if has("gui_macvim")
-"	     " set macvim specific stuf f
-"		 endif
+"	     " set macvim specific stuff
+"	 endif
 
 "The following trick is a really small one, but a super-efficient one, since it strips off two full keystrokes from almost every Vim command:
 nnoremap ; :
-"nnoremap : ;
 
 " Normally don't automatically format 'text' as it is typed, only do this
-  " with comments, at 70 characters.
-  au BufNewFile,BufEnter *.c,*.h,*.java,*.jsp,*.R,*.r set formatoptions-=t tw=70
-
+" with comments, at 80 characters.
+au BufNewFile,BufEnter *.c,*.h,*.java,*.jsp,*.R,*.r set formatoptions-=t tw=80
 	
 " If buffer modified, update any 'Last modified: ' in the first 20 lines.
 " 'Last modified: ' can have up to 10 characters before (they are retained).
@@ -603,9 +587,20 @@ set smartindent
 
 nnoremap <localleader>mm :!make<CR><CR>
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pandoc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" custom pandoc tidy function:
+"nnoremap <leader>mt mx:%!pandoc -t markdown -s --columns=78<CR>`x
+nnoremap <leader>mt mx:%!pandoc -t markdown -s --no-wrap --atx-headers<CR>`x
+"nnoremap <leader>mt mx:%!pandoc -t markdown -s --atx-headers --columns=78<CR>`x
+
+"autocmd VimEnter * set tw=78
+autocmd FileType pandoc set comments +=fb:*
+autocmd FileType pandoc set comments +=fb:-
+autocmd FileType pandoc set comments +=fb:> 
 
 let g:pandoc_bibfiles = ['/Users/seananderson/Dropbox/tex/ref3.bib']
 "The syntax highlighting should be fairly accurate and complete. By default,
@@ -622,19 +617,26 @@ let g:pandoc_no_spans = 1
 "otherwise stuff like <code> (which is unformatted) is detected as containing
 "html that doesn't end.
 
-let g:pandoc_use_bibtool = 1
-
+let g:pandoc_use_bibtool = 0
 let g:LuckyOutputFormat = 'markdown'
-let g:pandoc_no_folding = 1
-
-let g:pandoc_use_hard_wraps = 1
+let g:pandoc_no_folding = 0
+let g:pandoc_use_hard_wraps = 0
 let g:pandoc_auto_format = 0
-let g:pandoc_no_empty_implicits = 1
-let g:pandoc_bibfiles = ['/Users/seananderson/Dropbox/tex/ref3.bib']
-"autocmd FileType pandoc setlocal nonu
+
+autocmd FileType pandoc setlocal commentstring=<!--%s-->
+autocmd FileType pandoc setlocal comments=s:<!--,m:\ \ \ \ ,e:-->
+autocmd FileType pandoc setlocal nonu
+autocmd FileType pandoc setlocal linespace=7
+
+"If you are using soft-wrapping, this will tell vim to go ahead and show part of a long line that runs off the bottom of the screen.
+setlocal display=lastline
 
 " launch Marked.app
 nnoremap <leader>mk :silent !open -a Marked.app '%:p'<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" End Pandoc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Show syntax highlighting groups for word under cursor
 " http://vimcasts.org/episodes/creating-colorschemes-for-vim/
@@ -661,7 +663,6 @@ let g:yankring_replace_n_nkey = '<S-n>'
 au BufRead,BufNewFile *.Rnw  set filetype=rnoweb.tex
 
 autocmd BufEnter * silent! lcd %:p:h
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -691,7 +692,6 @@ autocmd FileType tex setlocal tw=79
 autocmd FileType tex set spell
 autocmd FileType rnoweb set spell
 
-
 "By default, Vim will highlight chunk headers of RMarkdown and
 "RreStructuredText with a single color. When the code is processed by knitr,
 "chunk headers should contain valid R code and, thus, you may want to highlight
@@ -708,7 +708,7 @@ set nolist
 setlocal nojoinspaces
 
 " Preserve indentation while pasting text from the OS X clipboard
-noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+"noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
 " https://github.com/Lokaltog/vim-powerline
 let g:ctrlp_cmd = 'CtrlPBuffer'
@@ -718,14 +718,12 @@ let g:ctrlp_cmd = 'CtrlPBuffer'
 " ================ Persistent Undo ==================
 " Keep undo history across sessions, by storing in file.
 " Only works all the time.
-"
 
 if version >= 730
   silent !mkdir ~/.vim/backups > /dev/null 2>&1
   set undodir=~/.vim/backups
   set undofile
 endif
-
 
 " move lines up or down easily:
 nnoremap <silent> <leader>k :m-2<CR>==
@@ -754,10 +752,10 @@ let vimrplugin_applescript = 1
 " let vimrplugin_screenplugin = 1
 " " For tmux support
 let g:ScreenImpl = 'Tmux'
-let vimrplugin_screenvsplit = 1 " For vertical tmux split
+let vimrplugin_vslplit = 1 " For vertical tmux split
 " let g:ScreenShellInitialFocus = 'shell' 
 " " instruct to use your own .screenrc file
-let g:vimrplugin_noscreenrc = 1
+"let g:vimrplugin_noscreenrc = 1
 " let vimrplugin_conqueplugin = 0
 " 
    let vimrplugin_assign = 0
@@ -768,6 +766,18 @@ let r_indent_align_args = 0
 " map <silent> <Leader>rh :call RAction("head")<CR>
 " map <silent> <LocalLeader>rk :call RAction("levels")<CR>
 " nmap <Leader>xx <Plug>RToggleComment
+let vimrplugin_vsplit = 1
+let vimrplugin_latexcmd = "latexmk -pdf"
+" clear console before sending
+let vimrplugin_ca_ck = 1
+" open pdf after knit or tex:
+let vimrplugin_openpdf = 1
+" autoopen html after knit
+let vimrplugin_openhtml = 1
+
+let vimrplugin_term_cmd = "/Applications/Utilities/iTerm.app/Contents/MacOS/iTerm -t R"
+
+autocmd FileType r set nospell
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -776,17 +786,13 @@ let r_indent_align_args = 0
 
 se nu
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim/
-set t_Co=256
+set t_Co=16
+"let base16colorspace=256  " Access colors present in 256 colorspace
 let g:solarized_termcolors = 16
 let g:solarized_visibility = "normal"
 let g:solarized_contrast = "normal"
 let g:solarized_termtrans = 1
 
-if has('gui_running')
-  set background=light
-else
-  set background=dark
-endif
 
 " set background colour based on time of day:
 "if strftime("%H") < 18
@@ -861,76 +867,35 @@ nmap ,ws visJ0)i<CR><ESC>
 "
 nmap ,wq mxvip:s/\. /\.\r/g<CR>`x
 
-" markdown
-set com+=fb:*
-set com+=fb:-
-
-"autocmd FileType pandoc setlocal fo=tcqwanj
-"autocmd FileType pandoc setlocal tw=78
-"se bg=dark
-
-
-" from http://alols.github.io/2012/11/07/writing-prose-with-vim/
-command! Prose setlocal nolist wrap tw=72 fo=t1njq nonu nornu|
-            \ setlocal com+=fb:*|
-            \ setlocal com+=fb:-|
-            "\ set linespace=4|
-            "\ augroup PROSE|
-            "\   autocmd InsertEnter <buffer> set fo+=a|
-            "\   autocmd InsertLeave <buffer> set fo-=a|
-            "\ augroup END
-
-command! Code setlocal nospell list nowrap|
-            "\ set linespace=3|
-            \ tw=72 fo=cqr1 showbreak=… rnu|
-            \ silent! autocmd! PROSE * <buffer>
 
 call togglebg#map("<F5>")
 
-"autocmd FileType pandoc Prose
-
 nnoremap <C-f> za
 
-"autocmd VimEnter * set tw=78
-autocmd FileType pandoc set comments +=fb:-
-autocmd FileType pandoc set comments +=fb:> 
-
-autocmd FileType pandoc setlocal formatoptions=nbcrq
-
-autocmd VimEnter * autocmd FileType pandoc set tw=78
-autocmd VimEnter * autocmd FileType rnoweb set tw=78
-autocmd VimEnter * autocmd FileType r set tw=78
+autocmd VimEnter * autocmd FileType rnoweb set tw=80
+autocmd VimEnter * autocmd FileType r set tw=80
 autocmd VimEnter * autocmd FileType rnoweb setlocal formatoptions=nbcrq
 autocmd VimEnter * autocmd FileType mail set tw=72
 autocmd FileType mail set noai
 autocmd FileType mail set expandtab
 
-"colo atom
-colo solarized
-"set anti enc=utf-8 gfn=Menlo:h17
-se bg=dark
 set cc=0
 set nocursorline
 
 " Strip tailing whitespace on save:
 autocmd BufWritePre *.r :%s/\s\+$//e
 autocmd BufWritePre *.R :%s/\s\+$//e
-"autocmd BufWritePre *.tex :%s/\s\+$//e
-"autocmd BufWritePre *.Rnw :%s/\s\+$//e
-"autocmd BufWritePre *.md :%s/\s\+$//e
+autocmd BufWritePre *.tex :%s/\s\+$//e
+autocmd BufWritePre *.Rnw :%s/\s\+$//e
+autocmd BufWritePre *.md :%s/\s\+$//e
 autocmd BufWritePre *.Rmd :%s/\s\+$//e
-"
-
-" custom pandoc tidy function:
-nnoremap <leader>mt mx:%!pandoc -t markdown -s --columns=78<CR>`x
-"nnoremap <leader>mt mx:%!pandoc -t markdown -s --atx-headers --columns=78<CR>`x
 
 "func! WordProcessorMode() 
   "setlocal formatoptions=1 
   "setlocal noexpandtab 
 "set formatprg=par\ -w78qrg
 "set formatprg=""
-nmap ;p mx{!}par -w78qrg<CR>`x
+"nmap ;p mx{!}par -w78qrg<CR>`x
 nmap Q mx{!}par -w78qrg<CR>`x
 map ,me mx{!}par -w72qrg<CR>`x
   "setlocal wrap 
@@ -939,6 +904,48 @@ map ,me mx{!}par -w72qrg<CR>`x
 "com! WP call WordProcessorMode()
 "
 
-colo base16-mocha
-se bg=light
-se nonu
+"colo base16-mocha
+"se bg=light
+"se nonu
+
+colo base16-ocean
+if has('gui_running')
+  set background=dark
+  set transparency=0
+else
+  set background=dark
+endif
+
+autocmd VimEnter * autocmd FileType r se fo+=roc
+
+" GitGutter plugin:
+highlight clear SignColumn
+
+let vimrplugin_term_cmd = "/Applications/Utilities/iTerm.app/Contents/MacOS/iTerm -t R"
+
+set tags+=./tags;$HOME
+
+set shell=/bin/bash
+nnoremap <bs> :Ack! '\b<c-r><c-w>\b'<cr>
+
+" http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
+
+""http://stackoverflow.com/questions/2447109/showing-a-different-background-colour-in-vim-past-80-characters
+"" In Vim >= 7.3, also highlight columns 120+
+" if exists('+colorcolumn')
+"   " (I picked 120-320 because you have to provide an upper bound and 320 just
+"   "  covers a 1080p GVim window in Ubuntu Mono 11 font.)
+"   let &colorcolumn="80,".join(range(120,320),",")
+" else
+"   " fallback for Vim < v7.3
+"   autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+" endif
+"
+"let g:vim_markdown_folding_disabled=0
+
+set modeline
+let g:gitgutter_enabled = 0
+
+se nospell
