@@ -26,8 +26,8 @@ nametrans = lambda folder: {'drafts': 'INBOX.Drafts',
                             'spam': 'INBOX.Junk Mail',
                             'inbox': 'INBOX',
 														'toreply': 'INBOX.To Reply',
-														'robots': 'INBOX.Robots',
-														'archive2004-2010': 'INBOX.Archive 2004-2010'
+														'robots': 'INBOX.Robots'
+														#'archive2004-2010': 'INBOX.Archive 2004-2010'
                             }.get(folder, folder)
 
 [Repository seananderson-remote]
@@ -47,19 +47,12 @@ nametrans = lambda folder: {'INBOX.Drafts': 'drafts',
                             'INBOX.Junk Mail': 'spam',
                             'INBOX': 'inbox',
 														'INBOX.To Reply': 'toreply',
-														'INBOX.Robots': 'robots',
-														'INBOX.Archive 2004-2010': 'archive2004-2010'
+														'INBOX.Robots': 'robots'
+														#'INBOX.Archive 2004-2010': 'archive2004-2010'
                             }.get(folder, folder)
 
 folderfilter = lambda folder: folder not in ['INBOX.Junk Mail',
-                                             #'SAFSsocial',
-                                             #'SFU',
-                                             #'Fulbright',
-                                             #'SFM spambot',
-                                             #'SMF spambot2',
-                                             #'[Gmail]/Important',
-                                             #'[Gmail]/Spam',
-                                             #'sent-mail'
+                                             'INBOX.Archive 2004-2010'
                                              ]
 
 # In between synchronisations, OfflineIMAP can monitor mailboxes for new
