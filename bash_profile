@@ -49,6 +49,8 @@ export LDFLAGS="-L/usr/X11/lib"
 # export PATH=${ADMB_HOME}/bin:${PATH}
 
 export PATH=${PATH}:/Users/seananderson/Dropbox/bin
+export ADMB_HOME="/Applications/ADMBTerminal.app/admb"
+export PATH="/Applications/ADMBTerminal.app/admb/bin":${PATH}
 
 
 PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
