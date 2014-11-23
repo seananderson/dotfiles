@@ -1,11 +1,17 @@
-options(repos="http://cran.rstudio.com/")
-
 .First <- function() {
   options(
     repos = c(CRAN = "http://cran.rstudio.com/"),
     browserNLdisabled = TRUE,
-    deparse.max.lines = 2)
+    deparse.max.lines = 2,
+    help_type = "html",
+    devtools.name = "Sean",
+    devtools.desc.author = "Sean C. Anderson <sean@seananderson.ca> [aut, cre]",
+    devtools.desc.license = "MIT + file LICENSE")
   options(vimcom.verbose = -1)     
+}
+
+if (interactive()) {
+  suppressMessages(require(devtools))
 }
 
 setHook(packageEvent("grDevices", "onLoad"),
@@ -21,5 +27,3 @@ Sys.setenv(PATH = paste(Sys.getenv("PATH"),
       "/Applications/ADMBTerminal.app/admb/bin"), sep=":"))
 
 Sys.setenv(ADMB_HOME="/Applications/ADMBTerminal.app/admb")
-
-options("help_type" = "html")
