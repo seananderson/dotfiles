@@ -11,6 +11,8 @@ ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="ys"
 #ZSH_THEME="fino-sean"
 ZSH_THEME="fino-noruby"
+#ZSH_THEME="agnoster"
+#ZSH_THEME="clean"
 #ZSH_THEME=Soliah
 #ZSH_THEME=fletcherm
 
@@ -66,12 +68,14 @@ for dir in \
     /usr/local/share/python \
     /usr/bin/bibtools \
     /usr/bin/texlive \
+    /usr/local/lib/python2.7/site-packages/ \
     ~/Dropbox/bin
 ; do
   if [[ -d $dir ]]; then path+=$dir; fi
 done
 
 alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"
 
 export EDITOR=vim
 export R_HISTFILE=~/Dropbox/.Rhistory
@@ -83,13 +87,11 @@ alias ms='cd ~/Dropbox/ms/'
 alias cluster='ssh sean@cluster.mathstat.dal.ca'
 alias baseline='ssh sean@baseline.stanford.edu'
 alias bugaboo='ssh anderson@bugaboo.westgrid.ca'
+alias hermes='ssh anderson@hermes.westgrid.ca'
 alias bugaboo-fs='ssh anderson@bugaboo-fs.westgrid.ca'
 alias vacuummail='sqlite3 ~/Library/Mail/V2/MailData/Envelope\ Index vacuum;'
 alias untar='tar -zxvf'
 alias pine="alpine"
-#alias oi='offlineimap -qf INBOX'
-#alias oiq='offlineimap -q'
-#alias oif='offlineimap'
 alias oi='mailsync-inbox.sh'
 alias oiq='mailsync-quick.sh'
 alias oif='mailsync.sh'
@@ -105,8 +107,8 @@ alias unload-offline='launchctl unload ~/Library/LaunchAgents/com.local.offlinei
 alias load-offline='launchctl load ~/Library/LaunchAgents/com.local.offlineimap.plist'
 alias byword='open -a Byword'
 alias mmc='open -a MultiMarkdown\ Composer'
-
 alias ...='cd ../..'
+alias updatedotfiles='cd ~/dotfiles;git submodule foreach git pull origin master'
 
 # The 'ls' family (this assumes you use the GNU ls)
 
@@ -123,4 +125,21 @@ alias lm='ls -al |more'         # pipe through 'more'
 # alias tree='tree -Csu'        # nice alternative to 'ls'
 alias tree='find . -print | sed -e "s;[^/]*/;|____;g;s;____|; |;g"'
 
+#alias ctags='/usr/local/bin/ctags'
+alias clean-terminal='sudo rm -rf /private/var/log/asl/*.asl'
 
+#. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
+# ctrl-z to go in and out of terminal from vim
+# http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
