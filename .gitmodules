@@ -2,12 +2,6 @@
 	path = vim/bundle/writegood.vim
 	url = git@github.com:davidbeckingsale/writegood.vim.git
   ignore = dirty
-[submodule "vim/bundle/screen"]
-	path = vim/bundle/screen
-	url = git@github.com:ervandew/screen.git
-[submodule "vim/bundle/nerdtree"]
-	path = vim/bundle/nerdtree
-	url = git@github.com:scrooloose/nerdtree.git
 [submodule "vim/bundle/Align"]
 	path = vim/bundle/Align
 	url = git@github.com:vim-scripts/Align.git
@@ -15,64 +9,67 @@
 [submodule "vim/bundle/LaTeX-Box"]
 	path = vim/bundle/LaTeX-Box
 	url = git@github.com:LaTeX-Box-Team/LaTeX-Box.git
+  ignore = dirty
 [submodule "vim/bundle/ScrollColors"]
 	path = vim/bundle/ScrollColors
 	url = git@github.com:vim-scripts/ScrollColors.git
-[submodule "vim/bundle/YankRing.vim"]
-	path = vim/bundle/YankRing.vim
-	url = git@github.com:vim-scripts/YankRing.vim.git
   ignore = dirty
-[submodule "vim/bundle/ctrlp.vim"]
-	path = vim/bundle/ctrlp.vim
-	url = git@github.com:kien/ctrlp.vim.git
-[submodule "vim/bundle/julia-vim"]
-	path = vim/bundle/julia-vim
-	url = git@github.com:JuliaLang/julia-vim.git
 [submodule "vim/bundle/nerdcommenter"]
 	path = vim/bundle/nerdcommenter
 	url = git@github.com:scrooloose/nerdcommenter.git
-[submodule "vim/bundle/vim-addon-mw-utils"]
-	path = vim/bundle/vim-addon-mw-utils
-	url = git@github.com:MarcWeber/vim-addon-mw-utils.git
+  ignore = dirty
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/bundle/vim-colors-solarized
 	url = git@github.com:altercation/vim-colors-solarized.git
+  ignore = dirty
 [submodule "vim/bundle/vim-fugitive"]
 	path = vim/bundle/vim-fugitive
 	url = git@github.com:tpope/vim-fugitive.git
-[submodule "vim/bundle/vim-pandoc"]
-	path = vim/bundle/vim-pandoc
-	url = git@github.com:vim-pandoc/vim-pandoc.git
   ignore = dirty
-[submodule "vim/bundle/vim-powerline"]
-	path = vim/bundle/vim-powerline
-	url = git@github.com:Lokaltog/vim-powerline.git
 [submodule "vim/bundle/vim-obsession"]
 	path = vim/bundle/vim-obsession
 	url = git@github.com:tpope/vim-obsession.git
-[submodule "vim/bundle/vim-startify"]
-	path = vim/bundle/vim-startify
-	url = git@github.com:mhinz/vim-startify.git
-[submodule "vim/bundle/vim-snipmate"]
-	path = vim/bundle/vim-snipmate
-	url = git@github.com:garbas/vim-snipmate.git
-[submodule "vim/bundle/vim-indent-object"]
-	path = vim/bundle/vim-indent-object
-	url = git@github.com:michaeljsmith/vim-indent-object.git
-[submodule "vim/bundle/vim-multiple-cursors"]
-	path = vim/bundle/vim-multiple-cursors
-	url = git@github.com:terryma/vim-multiple-cursors.git
   ignore = dirty
 [submodule "vim/bundle/vim-R-plugin"]
 	path = vim/bundle/vim-R-plugin
 	url = git@github.com:vim-scripts/Vim-R-plugin.git
   ignore = dirty
-[submodule "vim/bundle/hexHighlight.vim"]
-	path = vim/bundle/hexHighlight.vim
-	url = git@github.com:vim-scripts/hexHighlight.vim.git
-[submodule "vim/bundle/tlib_vim"]
-	path = vim/bundle/tlib_vim
-	url = git@github.com:tomtom/tlib_vim.git
 [submodule "oh-my-zsh"]
 	path = oh-my-zsh
 	url = git@github.com:seananderson/oh-my-zsh.git
+  ignore = dirty
+[submodule "vim/bundle/base16-vim"]
+	path = vim/bundle/base16-vim
+	url = https://github.com/chriskempson/base16-vim.git
+  ignore = dirty
+[submodule "vim/bundle/goyo.vim"]
+	path = vim/bundle/goyo.vim
+	url = git@github.com:junegunn/goyo.vim.git
+  ignore = dirty
+[submodule "vim/bundle/lightline.vim"]
+	path = vim/bundle/lightline.vim
+	url = git@github.com:itchyny/lightline.vim.git
+  ignore = dirty
+[submodule "vim/bundle/vim-litecorrect"]
+	path = vim/bundle/vim-litecorrect
+	url = git@github.com:reedes/vim-litecorrect.git
+  ignore = dirty
+[submodule "vim/bundle/vim-pandoc-syntax"]
+	path = vim/bundle/vim-pandoc-syntax
+	url = git@github.com:vim-pandoc/vim-pandoc-syntax.git
+  ignore = dirty
+[submodule "vim/bundle/vim-stan"]
+	path = vim/bundle/vim-stan
+	url = git@github.com:mja/vim-stan.git
+  ignore = dirty
+[submodule "vim/bundle/vim-wordy"]
+	path = vim/bundle/vim-wordy
+	url = git@github.com:reedes/vim-wordy.git
+  ignore = dirty
+[submodule "vim/bundle/ctrlp.vim"]
+	path = vim/bundle/ctrlp.vim
+	url = git@github.com:kien/ctrlp.vim.git
+  ignore = dirty
+[submodule "vim/bundle/vim-pandoc"]
+	path = vim/bundle/vim-pandoc
+	url = git@github.com:vim-pandoc/vim-pandoc.git
