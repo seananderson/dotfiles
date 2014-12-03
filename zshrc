@@ -143,3 +143,5 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
