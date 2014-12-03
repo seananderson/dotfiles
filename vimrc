@@ -1,17 +1,34 @@
 " .vimrc file
-" Many parts are taken from various online sources.
-"
-" Prevent Vim from emulating the original vi's bugs and limitations:
+
 set nocompatible
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pathogen
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call pathogen#infect()
-call pathogen#helptags()
+call plug#begin('~/.vim/plugged')
 
-" To disable a plugin, add it's bundle name to the following list:
-let g:pathogen_disabled = []
+Plug 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'junegunn/vim-easy-align'
+Plug 'vim-scripts/ScrollColors'
+Plug 'scrooloose/nerdcommenter'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-obsession'
+Plug 'vim-scripts/Vim-R-plugin'
+Plug 'chriskempson/base16-vim'
+Plug 'junegunn/goyo.vim', { 'on':  'Goyo' }
+Plug 'reedes/vim-litecorrect'
+"Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug '~/src/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'mja/vim-stan'
+Plug 'reedes/vim-wordy'
+Plug 'kien/ctrlp.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/limelight.vim'
+Plug 'whatyouhide/vim-gotham'
+Plug 'junegunn/seoul256.vim'
+Plug 'itchyny/lightline.vim'
+"Plug 'whatyouhide/vim-lengthmatters'
+
+call plug#end()
 
 " Comma as leader and local leader:
 let mapleader = ","
@@ -21,6 +38,7 @@ let g:maplocalleader = ","
 
 " How I get into normal mode usually:
 inoremap kj <Esc>
+inoremap jj <Esc>
 
 " Quickly edit or source this file:
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -33,9 +51,9 @@ nmap :W :w
 filetype on
 filetype indent on
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------------------------
 " Searching preferences
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------------------------
 set incsearch
 " set the search scan so that it ignores case when the search is all lower
 " case but recognizes uppercase if it's specified
@@ -52,9 +70,9 @@ nnoremap <CR> :nohlsearch<CR>/<BS>
 " map space to searching and back-searching
 map <space> /
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------------------------
 " File browsing
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------------------------
 set wildmode=longest,list
 set wildignore=*.o,*.obj,*.bak,*.exe,*.log,*.rel,*.swp,*.bbl
 set wildmenu
@@ -71,12 +89,12 @@ cmap >fd e <c-r>=expand('%:p:h').'/'<cr>
 
 set confirm
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------------------------
 " Visual setup
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------------------------
 syntax enable
 
-"set anti enc=utf-8 gfn=Menlo:h14
+set anti enc=utf-8 gfn=Menlo:h14
 "set anti enc=utf-8 gfn=Inconsolata\ for\ Powerline:h16
 "set anti enc=utf-8 gfn=Sauce\ Code\ Powerline:h14
 "set anti enc=utf-8 gfn=Menlo\ for\ Powerline:h14
@@ -87,20 +105,14 @@ syntax enable
 "set anti enc=utf-8 gfn=Helvetica:h12
 "set anti enc=utf-8 gfn=AnonymousPro:h13
 "set anti enc=utf-8 gfn=Cousine:h14
-set anti enc=utf-8 gfn=DejaVu\ Sans\ Mono:h13
+"set anti enc=utf-8 gfn=DejaVu\ Sans\ Mono:h13
 "set anti enc=utf-8 gfn=Monaco:h10
 "set noantialias
 
-set linespace=4
-"set guioptions-=T
-"set guioptions=ar "a means try and add copied text to system register
-
-" By default, Vim displays the current line of each minimized file,
-" which isn't much help and takes up space too
+set linespace=2
 set wmh=0
 
-" Set up the gui cursor to look nice
-" from http://www.derekwyatt.org/vim/the-vimrc-file/my-vimrc-file/
+" http://www.derekwyatt.org/vim/the-vimrc-file/my-vimrc-file/
 set guicursor=n-v-c:block-Cursor-blinkon0
 set guicursor+=ve:ver35-Cursor
 set guicursor+=o:hor50-Cursor
@@ -118,47 +130,41 @@ if exists('$TMUX')
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
-" set the gui options the way I like
 set guioptions=ace
-
-" The default screen size on start up
 au GUIEnter * set lines=59 columns=84
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------------------------
 " General setup
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------------------------
 filetype plugin on
-" Wrap only at word boundaries
+
+" Wrap only at word boundaries:
 set lbr
 
-" wrapping
 set wrap
-
-" Show the current mode? Yes!
 set showmode
+set autoindent
 
 " This setting prevents vi from making its annoying beeps when a command
 " doesn't work. Instead, it briefly flashes the screen -- much less annoying.
 set vb t_vb=".
 
-"Have the mouse enabled all the time:
-"set mouse=a
 set mousehide
 
 " By default, vim doesn't let the cursor stray beyond the defined text. This
 " setting allows the cursor to freely roam anywhere it likes in command mode.
-" It feels weird at first but is quite useful.
 set virtualedit=all
 
-set bs=2 " backspacing over everything in insert mode
+" backspacing over everything in insert mode
+set bs=2 
 
 " set to auto read when a file is changed from the outside
 set autoread
 
-"Change buffer - without saving
+" Change buffer, without saving
 set hid
 
-"Do not redraw, when running macros.. Lazyredraw
+" Do not redraw, when running macros
 set lazyredraw
 
 " Ignore filename with any of these suffixes when using the ":edit" command.
@@ -175,27 +181,24 @@ set notextmode
 set nottyfast
 
 " ttyscroll: turn off scrolling -> faster!
-set   ttyscroll=10
+set ttyscroll=10
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------------------------
 " Moving around
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------------------------
 " have the h and l cursor keys wrap between lines (like <Space> and <BkSpc> do
 " by default), and ~ covert case over line breaks; also have the cursor keys
 " wrap in insert mode:
 set whichwrap=h,l,~,[,]
-
-noremap <BS> i<BS><ESC>
 
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------
 " Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Turn on spell checking with English dictionary
+"------------------------------------------------
 set spell
 set spelllang=en_ca
 set spellsuggest=9 "show only 9 suggestions for misspelled words
@@ -206,45 +209,24 @@ set thesaurus+=~/.vim/thesaurus/mthesaur.txt
 " map control-z to choose the most likely replacement
 nnoremap <c-z> 1z=
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------
 " Word completion
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------
 " tell complete to look in the dictionary
 set complete-=k complete+=k
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------
 " Backups
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------
 set noswapfile
 set nobackup
 set nowb
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------
 " Folding
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set foldmethod=indent   "fold based on indent
+set foldmethod=manual   "to speed things up
 set foldnestmax=3       "deepest fold is 3 levels
-set nofoldenable        "dont fold by default
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Minibuffer stuff
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:miniBufExplModSelTarget = 1
-let g:miniBufExplorerMoreThanOne = 0
-let g:miniBufExplModSelTarget = 0
-let g:miniBufExplUseSingleClick = 1
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplVSplit = 25
-let g:miniBufExplSplitBelow=0
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Commenting
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map ,co O"<ESC>69A"<ESC>69\|D<CR>i"<CR><ESC>i"<ESC>70a"<ESC>70\|D<ESC>kA<cr>"<ESC>lxi<space>
-
-" Titlise Visually Selected Text (map for .vimrc)
-vmap ,T :s/\<\(.\)\(\k*\)\>/\u\1\L\2/g<CR><CR>
-vmap ,t :s/\<\(.\)\(\k*\)\>/\l\1\L\2/g<CR><CR>
+set nofoldenable        "don't fold by default
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Clipboard
@@ -315,24 +297,6 @@ nmap <silent> ,gW
 " "press <Enter> to continue"
 set cmdheight=1
 
-
-" from http://www.zzapper.co.uk/vim-tips-blog/2009/08/clean-up-text-file-with-vim-function.html
-""Execute with
-"": call Clean()
-function! Clean()
-" Clean up a text file
-" delete pesky (MSDOS) control-M 's
-exe ':%s/\r//ge'
-" delete pesky non-asciis
-exe ':%s/[\x00-\x1f\x80-\xff]/ /eg '
-" compress multiple spaces
-exe ':%s/\s\s\+/ /eg'
-" delete end of line spaces
-exe ':%s/\s\+$//e'
-" compress multiple blank lines
-exe ':silent! v/./,/./-j'
-endfunction
-
 " visual shifting (builtin-repeat)
 vnoremap < <gv
 vnoremap > >gv
@@ -340,63 +304,6 @@ vnoremap > >gv
 "smoother scrolling:
 map <C-U> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
 map <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
-" from http://blog.golden-ratio.net/2008/08/using-tabs-in-vim/
-function! GuiTabLabel()
-  " add the tab number
-  let label = '['.tabpagenr()
-
-  " modified since the last save?
-  let buflist = tabpagebuflist(v:lnum)
-  for bufnr in buflist
-    if getbufvar(bufnr, '&modified')
-      let label .= '*'
-      break
-    endif
-  endfor
-
-  " count number of open windows in the tab
-  let wincount = tabpagewinnr(v:lnum, '$')
-  if wincount > 1
-    let label .= ', '.wincount
-  endif
-  let label .= '] '
-
-  " add the file name without path information
-  let n = bufname(buflist[tabpagewinnr(v:lnum) - 1])
-  let label .= fnamemodify(n, ':t')
-
-  return label
-endfunction
-
-set guitablabel=%{GuiTabLabel()}
-
-au BufRead,BufNewFile *.bbcode    setfiletype bbcode
-
-" PHP
-" highlights interpolated variables in sql strings and does sql-syntax highlighting. yay
-"autocmd FileType php let php_sql_query=1
-" does exactly that. highlights html inside of php strings
-"autocmd FileType php let php_htmlInStrings=1
-" discourages use oh short tags. c'mon its deprecated remember
-"autocmd FileType php let php_noShortTags=1
-" automagically folds functions & methods. this is getting IDE-like isn't it?
-"autocmd FileType php let php_folding=1
-
-" set "make" command when editing php files
-"set makeprg=php\ -l\ %
-"set errorformat=%m\ in\ %f\ on\ line\ %l
-"To use, simply issue “:make %” command inside of VIM to check the syntax of your php against the interpreter. Syntax highlighting can only do so much
-
-
-" autocomplete funcs and identifiers for languages
-" Basically, while in insert mode, you can type <C-x> <C-o> to have vim attempt to autocomplete the current keyword
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=ccomplete#Complete
 
 "I like gf to search recursively downwards from the current directory so I append ./** to my path like so
 "set path+=./**
@@ -404,10 +311,6 @@ set path+=./**
 
 " bibtex command to open pdf Awesome
 "map gp yi{:!open ~/Papers/<C-r>"<cr><cr>
-
-" Sean's magic re-wrap in normal mode but keep my cursor in the same place
-" command:
-"nmap Q mxgqap`x
 
 " see: http://vim.wikia.com/wiki/Correct_format-flowed_email_function
 function! Fixflowed()
@@ -439,10 +342,6 @@ autocmd BufRead */temp/mutt-* call Fixflowed()
 
 " nerdtree:
 map <F1> :NERDTreeToggle<CR>
-
-" if has("gui_macvim")
-"      " set macvim specific stuff
-"  endif
 
 "The following trick is a really small one, but a super-efficient one, since it strips off two full keystrokes from almost every Vim command:
 nnoremap ; :
@@ -481,10 +380,9 @@ set updatetime=500
 " so that crontab works:
 au! BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------------------------
 " Splits and window management
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------------------------
 
 " Easily resize splits:
 if bufwinnr(1)
@@ -506,10 +404,9 @@ set smartindent
 
 nnoremap <localleader>mm :!make<CR><CR>
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------------------------
 " Pandoc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -----------------------------------------------
 
 " Underline the current line with '='
 nmap <silent> ,u1 :t.\|s/./=/g\|set nohls<cr>
@@ -530,12 +427,12 @@ let g:pandoc_syntax_dont_use_conceal_for_rules = ["codeblock_start", "codeblock_
 let g:pandoc#modules#disabled = ["folding"]
 let g:pandoc#biblio#bibs = ["/Users/seananderson/Dropbox/tex/ref3.bib"]
 let g:pandoc#biblio#use_bibtool = 1
-"let g:pandoc#formatting#mode = "Ah"
-let g:pandoc#formatting#mode = "s"
+let g:pandoc#formatting#mode = "Ah"
+"let g:pandoc#formatting#mode = "s"
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------------------------
 " End Pandoc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------------------------
 
 au BufRead,BufNewFile *.Rnw  set filetype=rnoweb.tex
 
@@ -731,16 +628,16 @@ set shell=/bin/bash
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
-" http://stackoverflow.com/questions/2447109/showing-a-different-background-colour-in-vim-past-80-characters
-" In Vim >= 7.3, also highlight columns 120+
-if exists('+colorcolumn')
-  " (I picked 120-320 because you have to provide an upper bound and 320 just
-  "  covers a 1080p GVim window in Ubuntu Mono 11 font.)
-  let &colorcolumn="80,".join(range(120,320),",")
-else
-  " fallback for Vim < v7.3
-  autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-endif
+" " http://stackoverflow.com/questions/2447109/showing-a-different-background-colour-in-vim-past-80-characters
+" " In Vim >= 7.3, also highlight columns 120+
+" if exists('+colorcolumn')
+"   " (I picked 120-320 because you have to provide an upper bound and 320 just
+"   "  covers a 1080p GVim window in Ubuntu Mono 11 font.)
+"   let &colorcolumn="80,".join(range(120,320),",")
+" else
+"   " fallback for Vim < v7.3
+"   autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+" endif
 
 let g:vim_markdown_folding_disabled=0
 
@@ -780,32 +677,6 @@ augroup litecorrect
   autocmd FileType tex call litecorrect#init()
 augroup END
 
-"augroup pencil
-  "autocmd!
-  "autocmd FileType tex call pencil#init({'wrap': 'soft'})
-  "autocmd FileType markdown,mkd call pencil#init({'wrap': 'soft'})
-"augroup END
-"let g:pencil#textwidth = 80
-"let g:pencil#conceallevel = 0
-
-" let g:thematic#themes = {
-" \ 'write'   : { 'colorscheme': 'base16-brewer',
-" \                  'background': 'light',
-" \                  'columns': 86,
-" \                  'laststatus': 0,
-" \                  'linespace': 8,
-" \                  'number-column-color-mute': 1,
-" \                },
-" \ 'code'   : { 'colorscheme': 'solarized',
-" \                  'background': 'dark',
-" \                  'columns': 86,
-" \                  'laststatus': 2,
-" \                  'linespace': 5,
-" \                  'number-column-color-mute': 0,
-" \                },
-" \ }
-" let g:thematic#theme_name = 'code'
-
 " speed up syntax highlighting, especially tex
 syn sync maxlines=100
 syn sync minlines=15
@@ -815,13 +686,19 @@ syn sync minlines=15
 " re-wrap paragraph with Q and jump back to where I was:
 nmap Q mxgqap`x
 
+" ------------------------------------------------
+" Speed
+" ------------------------------------------------
 "speed things up:
 set synmaxcol=1000
-set foldmethod=manual
 set ttyfast
 set lazyredraw
 set nocursorline
 set nocursorcolumn 
+
+" ------------------------------------------------
+" Writing
+" ------------------------------------------------
 
 "autocmd FileType pandoc setlocal formatoptions=lntqc
 "autocmd FileType pandoc setlocal autoindent
@@ -831,15 +708,69 @@ autocmd FileType tex setlocal foldmethod=manual
 nmap <C-Q> :setlocal formatoptions+=a<CR>
 nmap <C-q> :setlocal formatoptions-=a<CR>
 
-" set statusline=
-" set statusline +=%5*%{&ff}%*            "file format
-" set statusline +=%3*%y%*                "file type
-" set statusline +=%4*\ %<%F%*            "full path
-" set statusline +=%2*%m%*                "modified flag
-" set statusline +=%1*%=%5l%*             "current line
-" set statusline +=%2*/%L%*               "total lines
-" set statusline +=%1*%4v\ %*             "virtual column number
-"set statusline+=\ %P    "percent through file
+" ------------------------------------------------
+" Open help in new tabs
+" https://github.com/junegunn/dotfiles/blob/master/vimrc
+" ------------------------------------------------
+function! s:helptab()
+  if &buftype == 'help'
+    execute "normal! \<C-W>T"
+    nnoremap <buffer> q :q<cr>
+  endif
+endfunction
 
-colo base16-flat
-set autoindent
+augroup vimrc_help
+  autocmd!
+  autocmd BufEnter *.txt call s:helptab()
+augroup END
+
+" ------------------------------------------------
+" Goyo
+" ------------------------------------------------
+function! s:goyo_enter()
+  set noshowmode
+  set noshowcmd
+  "set scrolloff=10
+  "Limelight
+  set fullscreen
+  "set background=light
+  set linespace=4
+endfunction
+
+function! s:goyo_leave()
+  set showmode
+  set showcmd
+  "set scrolloff=5
+  "Limelight!
+  set nofullscreen
+  "set background=dark
+  set linespace=2
+endfunction
+
+autocmd! User GoyoEnter
+autocmd! User GoyoLeave
+autocmd  User GoyoEnter nested call <SID>goyo_enter()
+autocmd  User GoyoLeave nested call <SID>goyo_leave()
+
+let g:goyo_margin_top=1
+let g:goyo_margin_bottom=1
+nnoremap <Leader>G :Goyo<CR>
+
+" ------------------------------------------------
+" Miscellaneous 
+" ------------------------------------------------
+
+" Title case:
+vmap ,T :s/\<\(.\)\(\k*\)\>/\u\1\L\2/g<CR><CR>
+vmap ,t :s/\<\(.\)\(\k*\)\>/\l\1\L\2/g<CR><CR>
+
+"colo base16-flat
+colo solarized
+"colo seoul256
+
+
+" ------------------------------------------------
+" vim-wordy
+" ------------------------------------------------
+
+nnoremap <silent> K :NextWordy<cr>
