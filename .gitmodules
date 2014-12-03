@@ -2,10 +2,6 @@
 	path = vim/bundle/writegood.vim
 	url = git@github.com:davidbeckingsale/writegood.vim.git
   ignore = dirty
-[submodule "vim/bundle/Align"]
-	path = vim/bundle/Align
-	url = git@github.com:vim-scripts/Align.git
-  ignore = dirty
 [submodule "vim/bundle/LaTeX-Box"]
 	path = vim/bundle/LaTeX-Box
 	url = git@github.com:LaTeX-Box-Team/LaTeX-Box.git
@@ -73,6 +69,20 @@
 [submodule "vim/bundle/vim-pandoc"]
 	path = vim/bundle/vim-pandoc
 	url = git@github.com:vim-pandoc/vim-pandoc.git
+  ignore = dirty
 [submodule "vim/bundle/vim-gitgutter"]
 	path = vim/bundle/vim-gitgutter
 	url = git@github.com:airblade/vim-gitgutter.git
+  ignore = dirty
+[submodule "vim/bundle/seoul256.vim"]
+	path = vim/bundle/seoul256.vim
+	url = git@github.com:junegunn/seoul256.vim.git
+  ignore = dirty
+[submodule "vim/bundle/limelight.vim"]
+	path = vim/bundle/limelight.vim
+	url = git@github.com:junegunn/limelight.vim.git
+  ignore = dirty
+[submodule "vim/bundle/vim-easy-align"]
+	path = vim/bundle/vim-easy-align
+	url = git@github.com:junegunn/vim-easy-align.git
+  ignore = dirty
