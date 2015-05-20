@@ -8,9 +8,9 @@ ZSH=$HOME/.oh-my-zsh
 # ZSH_THEME="miloshadzic"
 #ZSH_THEME="candy"
 #ZSH_THEME="candy-kingdom"
-#ZSH_THEME="ys"
+ZSH_THEME="ys"
 #ZSH_THEME="fino-sean"
-ZSH_THEME="fino-noruby"
+#ZSH_THEME="fino-noruby"
 #ZSH_THEME="agnoster"
 #ZSH_THEME="clean"
 #ZSH_THEME=Soliah
@@ -76,6 +76,10 @@ done
 alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"
 
+alias ssh-ubuntu='ssh -p 2222 seananderson@localhost'
+alias start-ubuntu='VBoxManage startvm UbuntuServer --type headless'
+
+
 export EDITOR=vim
 export R_HISTFILE=~/Dropbox/.Rhistory
 export BIBINPUTS=".:~/Library/texmf/BIBINPUTS"
@@ -108,6 +112,7 @@ alias lm='ls -al |more'         # pipe through 'more'
 # alias tree='tree -Csu'        # nice alternative to 'ls'
 alias tree='find . -print | sed -e "s;[^/]*/;|____;g;s;____|; |;g"'
 
+
 #alias ctags='/usr/local/bin/ctags'
 alias clean-terminal='sudo rm -rf /private/var/log/asl/*.asl'
 
@@ -128,3 +133,5 @@ zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+
+
