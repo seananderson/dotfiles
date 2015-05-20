@@ -26,6 +26,8 @@ Plug 'junegunn/limelight.vim'
 Plug 'whatyouhide/vim-gotham'
 Plug 'junegunn/seoul256.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'romainl/Apprentice'
+Plug 'wimstefan/Lightning'
 "Plug 'whatyouhide/vim-lengthmatters'
 
 call plug#end()
@@ -94,7 +96,7 @@ set confirm
 " ------------------------------------------------
 syntax enable
 
-set anti enc=utf-8 gfn=Menlo:h14
+set anti enc=utf-8 gfn=Menlo:h12
 "set anti enc=utf-8 gfn=Inconsolata\ for\ Powerline:h16
 "set anti enc=utf-8 gfn=Sauce\ Code\ Powerline:h14
 "set anti enc=utf-8 gfn=Menlo\ for\ Powerline:h14
@@ -207,7 +209,7 @@ set dictionary+=/usr/share/dict/words
 set thesaurus+=~/.vim/thesaurus/mthesaur.txt
 
 " map control-z to choose the most likely replacement
-nnoremap <c-z> 1z=
+nnoremap <C-x> 1z=
 
 "------------------------------------------------
 " Word completion
@@ -236,6 +238,8 @@ if has("gui_macvim")
   "set clipboard+=unnamed
   let macvim_hig_shift_movement = 1
 endif
+
+set clipboard=unnamed
 
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=2048
@@ -413,7 +417,7 @@ nmap <silent> ,u1 :t.\|s/./=/g\|set nohls<cr>
 nmap <silent> ,u2 :t.\|s/./-/g\|set nohls<cr>
 
 " custom pandoc tidy function:
-nnoremap <leader>mt mx:%!pandoc -t markdown -s --no-wrap --atx-headers<CR>`x
+"nnoremap <leader>mt mx:%!pandoc -t markdown -s --no-wrap --atx-headers<CR>`x
 
 " If you are using soft-wrapping, this will tell Vim to show part
 " of a long line that runs off the bottom of the screen:
@@ -427,8 +431,8 @@ let g:pandoc_syntax_dont_use_conceal_for_rules = ["codeblock_start", "codeblock_
 let g:pandoc#modules#disabled = ["folding"]
 let g:pandoc#biblio#bibs = ["/Users/seananderson/Dropbox/tex/ref3.bib"]
 let g:pandoc#biblio#use_bibtool = 1
-let g:pandoc#formatting#mode = "Ah"
-"let g:pandoc#formatting#mode = "s"
+"let g:pandoc#formatting#mode = "Ah"
+let g:pandoc#formatting#mode = "s"
 
 " ------------------------------------------------
 " End Pandoc
@@ -765,7 +769,11 @@ vmap ,T :s/\<\(.\)\(\k*\)\>/\u\1\L\2/g<CR><CR>
 vmap ,t :s/\<\(.\)\(\k*\)\>/\l\1\L\2/g<CR><CR>
 
 "colo base16-flat
+"colo base16-grayscale
+"se bg=light
+se bg=light
 colo solarized
+"colo base16-ocean
 "colo seoul256
 
 
@@ -774,3 +782,14 @@ colo solarized
 " ------------------------------------------------
 
 nnoremap <silent> K :NextWordy<cr>
+
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
+" if has("autocmd")
+"   let pandoc_pipeline  = "pandoc --no-wrap --from=latex --to=markdown"
+"   "autocmd FileType html let &formatprg=pandoc_pipeline
+"   let &formatprg=pandoc_pipeline
+" endif
