@@ -51,7 +51,6 @@ DISABLE_AUTO_UPDATE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git git-extras battery brew osx web-search autojump)
 
-
 # Automatically start a tmux session upon logging in:
 ZSH_TMUX_AUTOSTART="false"
 
@@ -84,34 +83,18 @@ export BIBINPUTS=".:~/Library/texmf/BIBINPUTS"
 alias linode="ssh -p 42 sean@173.230.131.228"
 alias sundia="ssh -p 42 sean@173.230.131.228"
 alias ms='cd ~/Dropbox/ms/'
-alias cluster='ssh sean@cluster.mathstat.dal.ca'
-alias baseline='ssh sean@baseline.stanford.edu'
 alias bugaboo='ssh anderson@bugaboo.westgrid.ca'
 alias hermes='ssh anderson@hermes.westgrid.ca'
 alias bugaboo-fs='ssh anderson@bugaboo-fs.westgrid.ca'
 alias vacuummail='sqlite3 ~/Library/Mail/V2/MailData/Envelope\ Index vacuum;'
 alias untar='tar -zxvf'
-alias pine="alpine"
-alias oi='mailsync-inbox.sh'
-alias oiq='mailsync-quick.sh'
-alias oif='mailsync.sh'
-alias mt='mutt'
-alias src='cd ~/src/'
-alias ss3='cd ~/src/ss3sim/'
 alias db='cd ~/Dropbox'
-alias dot='cd ~/dotfiles'
-alias ezsh='vi ~/.zshrc'
-alias szsh='source ~/.zshrc'
-alias sca='cd ~/Dropbox/seananderson.github.com/'
-alias unload-offline='launchctl unload ~/Library/LaunchAgents/com.local.offlineimap.plist'
-alias load-offline='launchctl load ~/Library/LaunchAgents/com.local.offlineimap.plist'
 alias byword='open -a Byword'
 alias mmc='open -a MultiMarkdown\ Composer'
 alias ...='cd ../..'
 alias updatedotfiles='cd ~/dotfiles;git submodule foreach git pull origin master'
 
 # The 'ls' family (this assumes you use the GNU ls)
-
 alias l='ls'               
 alias la='ls -Al'               # show hidden files
 # alias ls='ls -hF --color' # add colors for filetype recognition
