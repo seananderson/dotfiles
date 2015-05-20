@@ -25,6 +25,7 @@ Sys.setenv(PATH = paste(Sys.getenv("PATH"),
     paste0("/usr/texbin:/Users/seananderson/Dropbox/bin:",
       "/Library/Frameworks/GDAL.framework/Programs:",
       "/Library/Frameworks/GEOS.framework/unix/bin:",
+      "/Users/seananderson/.rvm/gems/ruby-1.9.3-p194/bin/:",
       "/Applications/ADMBTerminal.app/admb/bin"), sep=":"))
 
 Sys.setenv(ADMB_HOME="/Applications/ADMBTerminal.app/admb")
