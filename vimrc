@@ -1224,7 +1224,7 @@ autocmd BufEnter * let &titlestring = ' ' . expand("%:t")
     nmap S <Plug>Sneak_S
 
     let g:ycm_filetype_blacklist = {}
-" let g:airline_theme = 'solarized'
+let g:airline_theme = 'solarized'
 let g:airline_powerline_fonts = 1
 
 
