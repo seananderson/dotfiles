@@ -11,7 +11,7 @@
 	br = branch
 	df = diff
 	recent = log --pretty=oneline --abbrev-commit -n 10
-  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative  
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	re = log --pretty=oneline --abbrev-commit -n 10
 	word = diff --color-words
 	w = diff --color-words
@@ -27,21 +27,22 @@
 [core]
 	excludesfile = /Users/seananderson/.gitignore_global
 	autocrlf = input
+	editor = nvim
 [diff "tex"]
 	wordRegex = "\\\\[a-zA-Z]+|[{}]|\\\\.|[^\\{}[:space:]]+"
 	xfuncname = "^(\\\\(sub)*section\\{.*)$"
 ;[difftool "sourcetree"]
 	;cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	;path = 
+	;path =
 ;[mergetool "sourcetree"]
 	;cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	;trustExitCode = true
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+; [difftool "sourcetree"]
+	; cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	; path =
+; [mergetool "sourcetree"]
+	; cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	; trustExitCode = true
 
 [push]
 	default = simple
@@ -54,6 +55,42 @@
 	smudge = git hawser smudge %f
 	required = true
 [filter "lfs"]
-	clean = git lfs clean %f
-	smudge = git lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 	required = true
+; [mergetool "Kaleidoscope"]
+	; cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	; trustexitcode = true
+; [merge]
+	; tool = Kaleidoscope
+; [difftool "Kaleidoscope"]
+	; cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[mergetool]
+	prompt = false
+; [diff]
+	; tool = Kaleidoscope
+
+;[diff]
+;  tool = vimdiff
+;[merge]
+;  tool = vimdiff
+; [difftool "DiffMerge"]
+    ; cmd = '/Applications/DiffMerge.app/Contents/MacOS/DiffMerge' "$LOCAL" "$REMOTE"
+; [merge]
+    ; tool = DiffMerge
+; [mergetool "DiffMerge"]
+    ; cmd = '/Applications/DiffMerge.app/Contents/MacOS/DiffMerge' -merge -result="$PWD/$MERGED" "$PWD/$LOCAL" "$PWD/$BASE" "$PWD/$REMOTE"
+    ; trustExitCode = true
+; [mergetool]
+    ; keepBackup = false
+    ;
+
+[difftool]
+    prompt = true
+[diff]
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = "nvim -d -u ~/.vimrc \"$LOCAL\" \"$REMOTE\""
