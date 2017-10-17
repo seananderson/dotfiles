@@ -5,16 +5,17 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# ZSH_THEME="miloshadzic"
+ #ZSH_THEME="miloshadzic"
 #ZSH_THEME="candy"
 #ZSH_THEME="candy-kingdom"
-ZSH_THEME="ys"
+#ZSH_THEME="ys"
 #ZSH_THEME="fino-sean"
 #ZSH_THEME="fino-noruby"
 #ZSH_THEME="agnoster"
 #ZSH_THEME="clean"
 #ZSH_THEME=Soliah
 #ZSH_THEME=fletcherm
+ZSH_THEME="pure"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -49,7 +50,7 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-extras battery brew osx web-search autojump)
+plugins=(git git-extras battery brew osx web-search autojump zsh-syntax-highlighting)
 
 # Automatically start a tmux session upon logging in:
 ZSH_TMUX_AUTOSTART="false"
@@ -64,39 +65,35 @@ source $ZSH/oh-my-zsh.sh
 
 # Edit path:
 for dir in \
-    /usr/local/share/python \
     /usr/bin/bibtools \
     /usr/bin/texlive \
-    /usr/local/lib/python2.7/site-packages/ \
+    /Library/TeX/texbin \
+    /usr/local/lib/python2.7/site-packages \
     ~/Dropbox/bin
 ; do
   if [[ -d $dir ]]; then path+=$dir; fi
 done
 
-alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
-alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"
+# alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+# alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"
 
 alias ssh-ubuntu='ssh -p 2222 seananderson@localhost'
 alias start-ubuntu='VBoxManage startvm UbuntuServer --type headless'
 
-
-export EDITOR=vim
+export VISUAL="vim" 
+export EDITOR="$VISUAL"
 export R_HISTFILE=~/Dropbox/.Rhistory
 export BIBINPUTS=".:~/Library/texmf/BIBINPUTS"
 
 alias linode="ssh -p 42 sean@173.230.131.228"
 alias sundia="ssh -p 42 sean@173.230.131.228"
-alias ms='cd ~/Dropbox/ms/'
 alias bugaboo='ssh anderson@bugaboo.westgrid.ca'
 alias hermes='ssh anderson@hermes.westgrid.ca'
 alias bugaboo-fs='ssh anderson@bugaboo-fs.westgrid.ca'
 alias vacuummail='sqlite3 ~/Library/Mail/V2/MailData/Envelope\ Index vacuum;'
 alias untar='tar -zxvf'
 alias db='cd ~/Dropbox'
-alias byword='open -a Byword'
-alias mmc='open -a MultiMarkdown\ Composer'
 alias ...='cd ../..'
-alias updatedotfiles='cd ~/dotfiles;git submodule foreach git pull origin master'
 
 # The 'ls' family (this assumes you use the GNU ls)
 alias l='ls'               
@@ -132,6 +129,46 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
-export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+export HOMEBREW_GITHUB_API_TOKEN=f281f6203dcfde00e24563d2058c8d13e62a8f14
+
+# http://stackoverflow.com/questions/12239952/how-to-always-have-the-same-current-directory-in-vim-and-in-terminal
+# function vim()
+# {
+#     local -x CWDFILE=~/.workdirs/$$
+#     test -d $CWDFILE:h || mkdir $CWDFILE:h
+#     vim $@
+# }
+# function precmd()
+# {
+#     local CWDFILE=~/.workdirs/$$
+#     test -e $CWDFILE && cd "$(cat $CWDFILE)"
+# }
+
+# https://chris.chowie.net/2015/04/19/True-colour-with-neovim-tmux-and-iterm2/
+# alias v='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
+# alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
+# alias vi='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
+# alias nvim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
+alias v='nvim'
+alias vs='nvim -S Session.vim'
+alias ms='python ~/src/aenea-fork/server/osx/server_osx.py'
+alias msd='python ~/src/aenea-fork/server/osx/server_osx.py --daemon'
+alias ma='open "smb://172.16.145.150/MacroSystem"'
+alias tn='tmux new -s'
+alias ta='tmux attach -t'
+alias tl='tmux ls'
+alias tk='tmux kill-session -t'
+alias mc='while true; do make --silent; sleep 2; done'
+alias mu='mutt'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# fd - cd to selected directory
+fd() {
+  local dir
+  dir=$(find ${1:-*} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+local file
 
 
