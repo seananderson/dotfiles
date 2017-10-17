@@ -836,17 +836,18 @@ if has('gui_running')
   " set bg=dark
   " set bg=dark
   " silent! colo solarized
-  " silent! colo seoul256
-  silent! colo flattened_light
+  silent! colo seoul256
+  " silent! colo flattened_light
 else
   " let g:seoul256_background = 237 " 233:239, 237
 " "   Range:   252 (darkest) ~ 256 (lightest)
 " "   Default: 253
   " let g:seoul256_light_background = 255
+  silent! colo seoul256-light
   " silent! colo seoul256
   " silent! colo base16-tomorrow
-  set bg=dark
-  silent! colo flattened_light
+  " set bg=dark
+  " silent! colo flattened_light
   " silent! colo gruvbox
   set guifont=Menlo\ for\ Powerline:h13
 endif

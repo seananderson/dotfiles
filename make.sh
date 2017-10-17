@@ -27,4 +27,6 @@ for file in $files; do
     mv ~/.$file $olddir
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
+    mkdir -p ~/.config/nvim/
+    ln -s $dir/vimrc ~/.config/nvim/init.vim
 done
