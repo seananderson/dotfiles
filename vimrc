@@ -78,6 +78,9 @@ else
   Plug 'jcfaria/Vim-R-plugin'
 endif
 Plug 'romainl/flattened'
+Plug 'tyrannicaltoucan/vim-deep-space'
+Plug 'cocopon/iceberg.vim'
+Plug 'jacoborus/tender.vim'
 """""""""""""""""""""" Plug 'airblade/vim-gitgutter'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 " Plug 'unblevable/quick-scope', {'on': 'QuickScopeToggle'}
@@ -843,7 +846,10 @@ else
 " "   Range:   252 (darkest) ~ 256 (lightest)
 " "   Default: 253
   " let g:seoul256_light_background = 255
-  silent! colo seoul256-light
+  " silent! colo seoul256-light
+  silent! colo deep-space
+  let g:airline_theme = 'deep_space'
+  let g:deepspace_italics=1
   " silent! colo seoul256
   " silent! colo base16-tomorrow
   " set bg=dark
@@ -1224,7 +1230,9 @@ autocmd BufEnter * let &titlestring = ' ' . expand("%:t")
     nmap S <Plug>Sneak_S
 
     let g:ycm_filetype_blacklist = {}
-let g:airline_theme = 'solarized'
+" let g:airline_theme = 'zenburn'
+" let g:airline_theme = 'sierra'
+" let g:airline_theme = 'sierra'
 let g:airline_powerline_fonts = 1
 
 
@@ -1316,3 +1324,6 @@ tnoremap <Esc> <C-\><C-n>
 "Remove all trailing whitespace by pressing F5
 nnoremap <F8> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 " nnoremap <F3> :setlocal
+"
+
+let g:gruvbox_contrast_dark = 'soft'

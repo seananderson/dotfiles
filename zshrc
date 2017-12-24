@@ -65,6 +65,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Edit path:
 for dir in \
+    /usr/local/opt/python/libexec/bin \
     /usr/bin/bibtools \
     /usr/bin/texlive \
     /Library/TeX/texbin \
