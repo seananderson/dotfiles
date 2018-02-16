@@ -6,7 +6,7 @@
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'LaTeX-Box-Team/LaTeX-Box'
+" Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'ervandew/supertab'
 Plug 'lervag/vimtex'
@@ -22,7 +22,7 @@ endif
 " Plug 'Valloric/YouCompleteMe', { 'for': ['c', 'cpp'], 'do': function('BuildYCM') }
 Plug 'Xuyuanp/nerdtree-git-plugin',    { 'on': 'NERDTreeToggle' }
 Plug 'altercation/vim-colors-solarized'
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -81,7 +81,7 @@ Plug 'romainl/flattened'
 Plug 'tyrannicaltoucan/vim-deep-space'
 Plug 'cocopon/iceberg.vim'
 Plug 'jacoborus/tender.vim'
-"""""""""""""""""""""" Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 " Plug 'unblevable/quick-scope', {'on': 'QuickScopeToggle'}
 Plug 'justinmk/vim-sneak'
@@ -97,6 +97,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0ng/vim-hybrid'
 " Plug 'whatyouhide/vim-lengthmatters'
+Plug 'ayu-theme/ayu-vim' " or other package manager
 
 call plug#end()
 
@@ -517,8 +518,10 @@ setlocal nojoinspaces
 " Preserve indentation while pasting text from the OS X clipboard
 noremap <leader>o :set paste<CR>:put  *<CR>:set nopaste<CR>
 
-let g:ctrlp_cmd = 'CtrlPBuffer'
-let g:ctrlp_by_filename = 1
+" let g:ctrlp_cmd = 'CtrlPBuffer'
+" let g:ctrlp_by_filename = 1
+"
+nmap <C-p> :Buffers<CR>
 
 " Keep undo history across sessions, by storing in file
 if version >= 703
@@ -806,30 +809,6 @@ map <Esc>[B <Down>
 au FileType gitcommit set textwidth=72 " Override the line length for git commits
 
 
-" TODO :
-" This variable should contain a comma separated list of Vim scripts to be
-" sourced by Nvim-R. These scripts may provide additional
-" functionality and/or change the behavior of Nvim-R. If you have such
-" scripts, put in your |vimrc|:
-" >
-"    let R_source = "~/path/to/MyScript.vim,/path/to/AnotherScript.vim"
-" <
-" Currently, there is only one script known to extend Nvim-R features:
-
-"    Support to the devtools R package~
-"    https://github.com/mllg/vim-devtools-plugin
-
-" http://stackoverflow.com/questions/12239952/how-to-always-have-the-same-current-directory-in-vim-and-in-terminal<Paste>
-" In .vimrc:
-" function s:CtrlZ()
-"   call writefile([fnamemodify('.', ':p')], $CWDFILE, 'b')
-"   return "\<C-z>"
-" endfunction
-" nnoremap <expr> <C-z> <SID>CtrlZ()
-
-" https://github.com/chrishunt/color-schemes
-"
-
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " colorscheme base16-railscasts
 " colorscheme base16-mocha
@@ -847,13 +826,13 @@ else
 " "   Default: 253
   " let g:seoul256_light_background = 255
   " silent! colo seoul256-light
-  silent! colo deep-space
-  let g:airline_theme = 'deep_space'
+  " silent! colo deep-space
+  " let g:airline_theme = 'deep_space'
   let g:deepspace_italics=1
-  " silent! colo seoul256
+  silent! colo seoul256
   " silent! colo base16-tomorrow
   " set bg=dark
-  " silent! colo flattened_light
+  silent! colo flattened_light
   " silent! colo gruvbox
   set guifont=Menlo\ for\ Powerline:h13
 endif
@@ -907,8 +886,7 @@ set gdefault
 "     let g:EasyMotion_space_jump_first = 1
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
-"
-" colo solarized
+
 let g:sneak#s_next = 1
 let g:gtfo#terminals = { 'mac' : 'iterm' }
 " 1 : Case sensitivity is determined by 'ignorecase' and 'smartcase'.:
@@ -1119,57 +1097,22 @@ let g:tagbar_show_linenumbers = 2
 " nvim-r
 " ----------------------------------------------------------------------------
 let R_assign = 0
-" " For tmux support
-" let g:ScreenImpl = 'Tmux'
-" let vimrplugin_vslplit = 1 " For vertical tmux split
 let vimrplugin_assign = 0
 let vimrplugin_assign_map = "_"
 let r_indent_align_args = 0
-" let vimrplugin_vsplit = 1
 let vimrplugin_latexcmd = "latexmk -pdf"
-" clear console before sending
-" let vimrplugin_ca_ck = 1
 " open pdf after knit or tex:
 let vimrplugin_openpdf = 1
 " autoopen html after knit
 let vimrplugin_openhtml = 1
-" let vimrplugin_term_cmd = "/Applications/Utilities/iTerm.app/Contents/MacOS/iTerm -t R"
-" let R_in_buffer = 0
-" let R_term = "/Applications/Utilities/iTerm.app/Contents/MacOS/iTerm -t R"
 autocmd FileType r set nospell
-"let R_args_in_stline = 1
-" let R_show_args = 1
-let R_start_libs = "base,stats,graphics,grDevices,utils,methods,dplyr,plyr,ggplot2,reshape2" " default highlighting
-" By default, Neovim's window is split horizontally. If you prefer to split it
-" vertically, put in your |vimrc|:
-" let R_vsplit = 1
-" let R_hl_term = 0
-" If you want to enable commands in Insert mode, add the following to your |vimrc|:
-"let R_insert_mode_cmds = 1
-" 6.26. Source additional scripts
-" let R_in_buffer = 1
-" let R_applescript = 0
-let R_assign_map = "<M-->" " match rstudio
-
-" let R_in_buffer = 0
-" let RStudio_cmd = '/Applications/RStudio.app/Contents/MacOS/RStudio'
-
+let R_start_libs = "base,stats,graphics,grDevices,utils,methods,dplyr,ggplot2,reshape2,purrr,devtools,readr" " default highlighting
+" clear console before sending
+let R_clear_line = 1
+let rout_follow_colorscheme = 1
 nmap <CR> <Plug>RDSendLine
-" vmap <CR> <Plug>REDSendSelection<CR>
-
 " autocmd filetype r inoremap $ $<C-X><C-O>
 " autocmd filetype rmd inoremap @ @<C-X><C-O>
-
-" let vimrplugin_term_cmd = "/Applications/Utilities/iTerm.app/Contents/MacOS/iTerm -t R"
-
-
-" " If and only if you type a lower case character, clever-f.vim ignores case.
-" let g:clever_f_smart_case=1
-" " If you set it to ';', f; matches all signs.
-" let g:clever_f_chars_match_any_signs = ';'
-
-nmap <leader>p <Plug>yankstack_substitute_older_paste
-nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 " start R in the same working directory as vim:
 let R_nvim_wd = 1
@@ -1181,6 +1124,10 @@ set shiftwidth=2
 " On pressing tab, insert 2 spaces
 set expandtab
 set smartindent
+
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>P <Plug>yankstack_substitute_newer_paste
+
 
 " ----------------------------------------------------------------------------
 " vimtex
@@ -1221,20 +1168,17 @@ autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
 autocmd VimLeave * call system("tmux rename-window bash")
 autocmd BufEnter * let &titlestring = ' ' . expand("%:t")
 
-" set title
+" 2-character Sneak (default)
+nmap s <Plug>Sneak_s
+nmap S <Plug>Sneak_S
 
-" set colorcolumn=80
-
-    " 2-character Sneak (default)
-    nmap s <Plug>Sneak_s
-    nmap S <Plug>Sneak_S
-
-    let g:ycm_filetype_blacklist = {}
-" let g:airline_theme = 'zenburn'
-" let g:airline_theme = 'sierra'
+let g:ycm_filetype_blacklist = {}
+let g:airline_theme = 'solarized'
+" let g:airline_theme = 'base16'
+" let g:airline_theme = 'sol'
+" let g:airline_theme = 'dark'
 " let g:airline_theme = 'sierra'
 let g:airline_powerline_fonts = 1
-
 
 " set background=dark
 " colorscheme hybrid_material
@@ -1321,9 +1265,16 @@ autocmd BufRead,BufNewFile *.Rmd set ft=rmd.r
 tnoremap kj <C-\><C-n>
 tnoremap <Esc> <C-\><C-n>
 
-"Remove all trailing whitespace by pressing F5
+"Remove all trailing whitespace by pressing F8
 nnoremap <F8> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 " nnoremap <F3> :setlocal
 "
 
 let g:gruvbox_contrast_dark = 'soft'
+
+"let ayucolor="light"  " for light version of theme
+"let ayucolor="mirage" " for mirage version of theme
+"let ayucolor="dark"   " for dark version of theme
+"colorscheme ayu
+
+

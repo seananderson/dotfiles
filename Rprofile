@@ -8,9 +8,9 @@
 if (interactive()) {
   suppressMessages(require(devtools))
   suppressMessages(require(testthat))
-  ksource <- function(x, ...) {
-    library(knitr)
-    source(purl(x, output = tempfile()), ...)
-  }
+  suppressMessages(require(usethis))
+  suppressMessages(require(lintr))
 }
-Sys.setenv(PATH=paste(Sys.getenv("PATH"),"/Users/seananderson/Dropbox/bin",sep=":"))
+
+Sys.setenv(PATH = paste(Sys.getenv("PATH"),
+  "/Users/seananderson/Dropbox/bin", sep = ":"))
