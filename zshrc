@@ -173,3 +173,5 @@ fd() {
 local file
 
 
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

@@ -10,7 +10,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'ervandew/supertab'
 Plug 'lervag/vimtex'
-Plug 'tommcdo/vim-lion'
+Plug 'tommcdo/vim-lion' " e.g. visual vl= or vlip=
 if has("nvim")
   " Plug 'SirVer/ultisnips'
   " Plug 'SirVer/ultisnips'
@@ -22,17 +22,17 @@ endif
 " Plug 'Valloric/YouCompleteMe', { 'for': ['c', 'cpp'], 'do': function('BuildYCM') }
 Plug 'Xuyuanp/nerdtree-git-plugin',    { 'on': 'NERDTreeToggle' }
 Plug 'altercation/vim-colors-solarized'
-" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim', { 'on':  'Goyo' }
-Plug 'junegunn/gv.vim'
+Plug 'junegunn/gv.vim' " e.g. :GV or :GV! -> Git!
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-easy-align',       { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
-Plug 'justinmk/vim-gtfo'
+Plug 'justinmk/vim-gtfo' " e.g. gof (finder) got (terminal) of file!
 Plug 'kchmck/vim-coffee-script'
 Plug 'mbbill/undotree',             { 'on': 'UndotreeToggle'   }
 Plug 'mja/vim-stan'
@@ -57,7 +57,7 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-scripts/ScrollColors'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug '~/src/base16-vim'
-" Plug 'base16-vim'
+"Plug 'chriskempson/base16-vim'
 " Plug 'scrooloose/syntastic'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'vim-scripts/moria'
@@ -66,6 +66,7 @@ Plug 'vim-scripts/xoria256.vim'
   " Plug 'majutsushi/tagbar',
   " Plug 'mhinz/vim-signify'
 Plug 'kshenoy/vim-signature'
+Plug 'rakr/vim-one'
 " endif
 " Plug 'craigemery/vim-autotag'
 if has("nvim")
@@ -190,7 +191,7 @@ nnoremap <space> /
 " File browsing
 " ----------------------------------------------------------------------------
 set wildmode=longest,list:longest
-set wildignore=*.o,*.obj,*.bak,*.exe,*.log,*.rel,*.swp,*.bbl
+set wildignore=*.o,*.obj,*.bak,*.exe,*.log,*.rel,*.swp,*.bbl,*.pdf
 set wildmenu
 " When pressing <leader>cd, switch to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
@@ -518,10 +519,25 @@ setlocal nojoinspaces
 " Preserve indentation while pasting text from the OS X clipboard
 noremap <leader>o :set paste<CR>:put  *<CR>:set nopaste<CR>
 
-" let g:ctrlp_cmd = 'CtrlPBuffer'
 " let g:ctrlp_by_filename = 1
-"
-nmap <C-p> :Buffers<CR>
+" If a file is already open, open it again in a new pane instead of switching to the existing pane
+let g:ctrlp_switch_buffer = 'et'
+" Ignore files in .gitignore
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+" 'a' - the directory of the current file, unless it is a subdirectory of the
+" cwd
+" 'r' - the nearest ancestor of the current file that contains one of these
+" directories or files: .git .hg .svn .bzr
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_cmd = 'CtrlPBuffer'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll|pdf|Rd)$',
+  \ }
+
+" nmap <C-p> :Buffers<CR>
+nmap <leader>gb :Buffers<CR>
+nmap <leader>gf :GitFiles<CR>
 
 " Keep undo history across sessions, by storing in file
 if version >= 703
@@ -826,13 +842,15 @@ else
 " "   Default: 253
   " let g:seoul256_light_background = 255
   " silent! colo seoul256-light
+  " silent! colo seoul256
+  silent! colorscheme one
   " silent! colo deep-space
   " let g:airline_theme = 'deep_space'
   let g:deepspace_italics=1
-  silent! colo seoul256
+  " silent! colo seoul256
   " silent! colo base16-tomorrow
-  " set bg=dark
-  silent! colo flattened_light
+  set bg=dark
+  " silent! colo flattened_light
   " silent! colo gruvbox
   set guifont=Menlo\ for\ Powerline:h13
 endif
@@ -1076,6 +1094,15 @@ let g:tagbar_type_r = {
 \ }
 let g:tagbar_show_linenumbers = 2
 
+let g:tagbar_type_r = {
+      \ 'ctagstype' : 'r',
+      \ 'kinds'     : [
+      \ 'f:Functions',
+      \ 'g:GlobalVariables',
+      \ 'v:FunctionVariables',
+      \ ]
+      \ }
+
 " ----------------------------------------------------------------------------
 " Syntastic
 " ----------------------------------------------------------------------------
@@ -1173,10 +1200,11 @@ nmap s <Plug>Sneak_s
 nmap S <Plug>Sneak_S
 
 let g:ycm_filetype_blacklist = {}
-let g:airline_theme = 'solarized'
+" let g:airline_theme = 'solarized'
 " let g:airline_theme = 'base16'
 " let g:airline_theme = 'sol'
-" let g:airline_theme = 'dark'
+let g:airline_theme = 'dark'
+" let g:airline_theme = 'deepspace'
 " let g:airline_theme = 'sierra'
 let g:airline_powerline_fonts = 1
 
@@ -1278,3 +1306,13 @@ let g:gruvbox_contrast_dark = 'soft'
 "colorscheme ayu
 
 
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+autocmd FileType r setlocal commentstring=##\ %s
+  let g:airline_theme='one'
+
+" https://github.com/tweekmonster/nvim-python-doctor/wiki/Advanced:-Using-pyenv
+let g:python_host_prog = '/Users/seananderson/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/seananderson/.pyenv/versions/neovim3/bin/python'

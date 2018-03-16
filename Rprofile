@@ -14,3 +14,9 @@ if (interactive()) {
 
 Sys.setenv(PATH = paste(Sys.getenv("PATH"),
   "/Users/seananderson/Dropbox/bin", sep = ":"))
+
+## blogdown:
+## https://bookdown.org/yihui/blogdown/global-options.html
+options(
+  blogdown.author = "Sean Anderson"
+)
