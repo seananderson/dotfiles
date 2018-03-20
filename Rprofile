@@ -2,6 +2,7 @@
   options(
     repos = c(CRAN = "https://cran.rstudio.com/"),
     browserNLdisabled = TRUE,
+    Ncpus = parallel::detectCores() - 2L,
     deparse.max.lines = 2)
 }
 
