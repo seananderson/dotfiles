@@ -82,7 +82,7 @@ Plug 'romainl/flattened'
 Plug 'tyrannicaltoucan/vim-deep-space'
 Plug 'cocopon/iceberg.vim'
 Plug 'jacoborus/tender.vim'
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 " Plug 'unblevable/quick-scope', {'on': 'QuickScopeToggle'}
 Plug 'justinmk/vim-sneak'
