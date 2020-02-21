@@ -14,7 +14,7 @@ Plug 'tommcdo/vim-lion' " e.g. visual vl= or vlip=
 if has("nvim")
   " Plug 'SirVer/ultisnips'
   " Plug 'SirVer/ultisnips'
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   " Plug 'ervandew/supertab'
   Plug 'Shougo/neosnippet.vim' " Snippets
   " Plug 'Shougo/neosnippet-snippets'
@@ -26,21 +26,23 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'junegunn/goyo.vim', { 'on':  'Goyo' }
 Plug 'junegunn/gv.vim' " e.g. :GV or :GV! -> Git!
 Plug 'junegunn/limelight.vim'
+Plug 'davidbeckingsale/writegood.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-easy-align',       { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
 Plug 'justinmk/vim-gtfo' " e.g. gof (finder) got (terminal) of file!
-Plug 'kchmck/vim-coffee-script'
+" Plug 'kchmck/vim-coffee-script'
 Plug 'mbbill/undotree',             { 'on': 'UndotreeToggle'   }
 Plug 'mja/vim-stan'
 Plug 'mllg/vim-devtools-plugin'
 Plug 'morhetz/gruvbox'
 Plug 'reedes/vim-litecorrect'
 Plug 'reedes/vim-wordy'
-Plug 'chrisbra/csv.vim'
+" Plug 'chrisbra/csv.vim'
 Plug 'romainl/Apprentice'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tomasr/molokai'
@@ -54,10 +56,11 @@ Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+" Plug 'vim-pandoc/vim-rmarkdown'
 Plug 'vim-scripts/ScrollColors'
 Plug 'maxbrunsfeld/vim-yankstack'
-Plug '~/src/base16-vim'
-"Plug 'chriskempson/base16-vim'
+"Plug '~/src/base16-vim'
+Plug 'chriskempson/base16-vim'
 " Plug 'scrooloose/syntastic'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'vim-scripts/moria'
@@ -73,8 +76,9 @@ if has("nvim")
   " Plug 'ludovicchabant/vim-gutentags'
 endif
 if has('nvim')
-  " Plug 'jalvesaq/Nvim-R'
-  Plug '~/src/Nvim-R'
+  Plug 'jalvesaq/Nvim-R'
+  "Plug 'jalvesaq/R-Vim-runtime'
+  "Plug '~/src/Nvim-R'
 else
   Plug 'jcfaria/Vim-R-plugin'
 endif
@@ -90,7 +94,7 @@ Plug 'justinmk/vim-sneak'
 " Plug 'rhysd/clever-f.vim'
 " Plug 'taglist.vim'
 " Plug 'chrisbra/Colorizer'
-" Plug 'joshdick/onedark.vim'
+Plug 'joshdick/onedark.vim'
 " Plug 'junegunn/vim-xmark'
 " Plug 'mattn/gist-vim'
 " Plug 'reedes/vim-pencil'
@@ -98,7 +102,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0ng/vim-hybrid'
 " Plug 'whatyouhide/vim-lengthmatters'
-Plug 'ayu-theme/ayu-vim' " or other package manager
+Plug 'ayu-theme/ayu-vim'
+Plug 'nightsense/snow'
+Plug 'mhartington/oceanic-next'
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
@@ -225,7 +232,7 @@ if has('gui_running')
   "set anti enc=utf-8 gfn=Menlo:h12
   "set anti enc=utf-8 gfn=Inconsolata\ for\ Powerline:h14
   "set anti enc=utf-8 gfn=Sauce\ Code\ Powerline:h14
-  "set anti enc=utf-8 gfn=Menlo\ for\ Powerline:h14
+  set anti enc=utf-8 gfn=Menlo\ for\ Powerline:h12
   "set anti enc=utf-8 gfn=Inconsolata:h14
   "set anti enc=utf-8 gfn=ConsolasforBBEdit:h12
   "set anti enc=utf-8 gfn=Consolas:h14
@@ -267,6 +274,7 @@ set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 " let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 
 set guioptions=acer
+set guioptions=
 " au GUIEnter * set lines=59 columns=84
 
 filetype plugin on
@@ -325,10 +333,10 @@ endif
 " wrap in insert mode:
 set whichwrap=h,l,~,[,]
 
-" nnoremap j gj
-" nnoremap k gk
-" vnoremap j gj
-" vnoremap k gk
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 
 "------------------------------------------------
 " Spell checking
@@ -346,9 +354,9 @@ nnoremap <C-x> 1z=
 "------------------------------------------------
 " Backups
 "------------------------------------------------
-set noswapfile
-set nobackup
-set nowb
+" set noswapfile
+" set nobackup
+" set nowb
 
 "------------------------------------------------
 " Folding
@@ -457,7 +465,7 @@ nnoremap <localleader>mm :!make<CR><CR>
 " ----------------------------------------------------------------------------
 " <leader>bs | buf-search
 " ----------------------------------------------------------------------------
-nnoremap <leader>bs :cex []<BAR>bufdo vimgrepadd @@g %<BAR>cw<s-left><s-left><right>
+" nnoremap <leader>bs :cex []<BAR>bufdo vimgrepadd @@g %<BAR>cw<s-left><s-left><right>
 
 " ------------------------------------------------
 " Pandoc
@@ -537,12 +545,19 @@ let g:ctrlp_custom_ignore = {
 
 " nmap <C-p> :Buffers<CR>
 nmap <leader>gb :Buffers<CR>
-nmap <leader>gf :GitFiles<CR>
+nmap <leader>gF :GitFiles<CR>
 
 " Keep undo history across sessions, by storing in file
 if version >= 703
-  silent !mkdir ~/.vim/backups > /dev/null 2>&1
-  set undodir=~/.vim/backups//,.
+  silent !mkdir ~/.vim/backup > /dev/null 2>&1
+  silent !mkdir ~/.vim/undo > /dev/null 2>&1
+  silent !mkdir ~/.vim/swp > /dev/null 2>&1
+
+  set backupdir=~/.vim/backup//,.
+  set undodir=~/.vim/undo//,.
+  set directory=~/.vim/swp//,.
+
+  set backup
   set undofile
 endif
 
@@ -553,7 +568,6 @@ nnoremap <silent> <leader>j :m+1<CR>==
 " toggle line numbers:
 " http://stackoverflow.com/questions/762515/vim-remap-key-to-toggle-line-numbering
 nnoremap <f2> :set number! number?<cr>
-
 
 " ----------------------------------------------------------------------------
 " Colors and aesthetics
@@ -572,10 +586,10 @@ endif
 " The following beast will return the syntax highlighting group that the
 " current "thing" under the cursor belongs to -- very useful for figuring out
 " what to change as far as syntax highlighting goes.
-nmap <silent> ,vc :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name")
-     \ . '> trans<' . synIDattr(synID(line("."),col("."),0),"name")
-     \ . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name")
-     \ . ">"<CR>
+" nmap <silent> ,vc :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name")
+"      \ . '> trans<' . synIDattr(synID(line("."),col("."),0),"name")
+"      \ . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name")
+"      \ . ">"<CR>
 
 " ----------------------------------------------------------------------------
 " Assorted
@@ -599,20 +613,20 @@ nnoremap <C-f> za
 autocmd VimEnter * autocmd FileType rnoweb set tw=78
 autocmd VimEnter * autocmd FileType r set tw=78
 autocmd VimEnter * autocmd FileType rnoweb setlocal formatoptions=nbcrq
-autocmd VimEnter * autocmd FileType mail set tw=72
-autocmd VimEnter * autocmd FileType mail setlocal comments+=nb:>
-autocmd FileType mail setlocal formatoptions=tcq
-autocmd FileType mail set noai
-autocmd FileType mail set expandtab
-autocmd FileType mail set spell
-" http://unix.stackexchange.com/questions/166814/getting-vim-to-go-to-the-first-line-and-enter-insert-mode-when-writing-an-email
-" I needed two autocmds to do this. To reach the gap between the headers and the message, search for an empty line:
-autocmd BufRead *mutt-* execute "normal /^$/\n"
-autocmd BufRead *mutt-* execute "normal 2o"
-autocmd BufRead *mutt-* execute "normal k"
-" autocmd BufRead *mutt-* execute 'normal gg/\n\n\n^M2j'
-" then to enter insert mode:
-autocmd BufRead *mutt-* execute ":startinsert"
+" autocmd VimEnter * autocmd FileType mail set tw=72
+" autocmd VimEnter * autocmd FileType mail setlocal comments+=nb:>
+" autocmd FileType mail setlocal formatoptions=tcq
+" autocmd FileType mail set noai
+" autocmd FileType mail set expandtab
+" autocmd FileType mail set spell
+" " http://unix.stackexchange.com/questions/166814/getting-vim-to-go-to-the-first-line-and-enter-insert-mode-when-writing-an-email
+" " I needed two autocmds to do this. To reach the gap between the headers and the message, search for an empty line:
+" autocmd BufRead *mutt-* execute "normal /^$/\n"
+" autocmd BufRead *mutt-* execute "normal 2o"
+" autocmd BufRead *mutt-* execute "normal k"
+" " autocmd BufRead *mutt-* execute 'normal gg/\n\n\n^M2j'
+" " then to enter insert mode:
+" autocmd BufRead *mutt-* execute ":startinsert"
 
 " Tip: Place the cursor in the optimal position, editing email messages.
 " Author: Davide Alberani
@@ -818,7 +832,7 @@ vmap ,t :s/\<\(.\)\(\k*\)\>/\l\1\L\2/g<CR><CR>
 "   let &formatprg=pandoc_pipeline
 " endif
 "
-map <Esc>[B <Down>
+" map <Esc>[B <Down>
 
 " set list                        " Highlight white-space characters
 " set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " but only the ones we don't want
@@ -829,7 +843,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " colorscheme base16-railscasts
 " colorscheme base16-mocha
 if has('gui_running')
-  set guifont=Menlo\ for\ Powerline:h13
+""  set guifont=Menlo\ for\ Powerline:h13
   " silent! colo seoul256-light
   " set bg=dark
   " set bg=dark
@@ -843,16 +857,16 @@ else
   " let g:seoul256_light_background = 255
   " silent! colo seoul256-light
   " silent! colo seoul256
-  silent! colorscheme one
+  " silent! colorscheme one
   " silent! colo deep-space
   " let g:airline_theme = 'deep_space'
   let g:deepspace_italics=1
-  " silent! colo seoul256
+  silent! colo seoul256
   " silent! colo base16-tomorrow
   set bg=dark
   " silent! colo flattened_light
   " silent! colo gruvbox
-  set guifont=Menlo\ for\ Powerline:h13
+""  set guifont=Menlo\ for\ Powerline:h13
 endif
 " colorscheme gruvbox
 " colorscheme base16-ocean
@@ -897,8 +911,8 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set rnu
 set gdefault
 
-    let g:EasyMotion_use_upper = 0
-    let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+let g:EasyMotion_use_upper = 0
+let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 " " Type Enter or Space key and jump to first match (first letter of |g:EasyMotion_keys| ):
 "     let g:EasyMotion_enter_jump_first = 1
 "     let g:EasyMotion_space_jump_first = 1
@@ -937,7 +951,6 @@ vmap <leader>q <plug>(QuickScopeToggle)
 " ----------------------------------------------------------------------------
 let g:undotree_WindowLayout = 2
 nnoremap U :UndotreeToggle<CR>
-
 
 " ----------------------------------------------------------------------------
 " Help in new tabs
@@ -1203,7 +1216,8 @@ let g:ycm_filetype_blacklist = {}
 " let g:airline_theme = 'solarized'
 " let g:airline_theme = 'base16'
 " let g:airline_theme = 'sol'
-let g:airline_theme = 'dark'
+" let g:airline_theme = 'dark'
+let g:airline_theme = 'nord'
 " let g:airline_theme = 'deepspace'
 " let g:airline_theme = 'sierra'
 let g:airline_powerline_fonts = 1
@@ -1253,7 +1267,7 @@ nnoremap <Leader>q :setlocal formatoptions-=a<CR>
 
 se mouse=a
 
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
 " let g:UltiSnipsExpandTrigger='<C-j>'
 " let g:UltiSnipsListSnippets='<C-l>'
@@ -1306,13 +1320,225 @@ let g:gruvbox_contrast_dark = 'soft'
 "colorscheme ayu
 
 
-
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-autocmd FileType r setlocal commentstring=##\ %s
+autocmd FileType r setlocal commentstring=#\ %s
   let g:airline_theme='one'
 
 " https://github.com/tweekmonster/nvim-python-doctor/wiki/Advanced:-Using-pyenv
 let g:python_host_prog = '/Users/seananderson/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/Users/seananderson/.pyenv/versions/neovim3/bin/python'
+
+set wrap
+" colo flattened_dark
+"
+
+" https://stackoverflow.com/questions/1269689/to-disable-entering-ex-mode-in-vim
+" nnoremap Q <Nop>
+
+
+" colorscheme hybrid_material
+colorscheme seoul256
+" set background=dark
+" colorscheme snow
+" let g:airline_theme='snow_light'
+" let &t_SI = "\<Esc>[6 q"
+" let &t_SR = "\<Esc>[4 q"
+" let &t_EI = "\<Esc>[2 q"
+
+" If you are using a console version of Vim, or dealing
+" with a file that changes externally (e.g. a web server log)
+" then Vim does not always check to see if the file has been changed.
+" The GUI version of Vim will check more often (for example on Focus change),
+" and prompt you if you want to reload the file.
+"
+" There can be cases where you can be working away, and Vim does not
+" realize the file has changed. This command will force Vim to check
+" more often.
+"
+" Calling this command sets up autocommands that check to see if the
+" current buffer has been modified outside of vim (using checktime)
+" and, if it has, reload it for you.
+"
+" This check is done whenever any of the following events are triggered:
+" * BufEnter
+" * CursorMoved
+" * CursorMovedI
+" * CursorHold
+" * CursorHoldI
+"
+" In other words, this check occurs whenever you enter a buffer, move the cursor,
+" or just wait without doing anything for 'updatetime' milliseconds.
+"
+" Normally it will ask you if you want to load the file, even if you haven't made
+" any changes in vim. This can get annoying, however, if you frequently need to reload
+" the file, so if you would rather have it to reload the buffer *without*
+" prompting you, add a bang (!) after the command (WatchForChanges!).
+" This will set the autoread option for that buffer in addition to setting up the
+" autocommands.
+"
+" If you want to turn *off* watching for the buffer, just call the command again while
+" in the same buffer. Each time you call the command it will toggle between on and off.
+"
+" WatchForChanges sets autocommands that are triggered while in *any* buffer.
+" If you want vim to only check for changes to that buffer while editing the buffer
+" that is being watched, use WatchForChangesWhileInThisBuffer instead.
+"
+command! -bang WatchForChanges                  :call WatchForChanges(@%,  {'toggle': 1, 'autoread': <bang>0})
+command! -bang WatchForChangesWhileInThisBuffer :call WatchForChanges(@%,  {'toggle': 1, 'autoread': <bang>0, 'while_in_this_buffer_only': 1})
+command! -bang WatchForChangesAllFile           :call WatchForChanges('*', {'toggle': 1, 'autoread': <bang>0})
+
+" http://vim.wikia.com/wiki/Have_Vim_check_automatically_if_the_file_has_changed_externally
+" WatchForChanges function
+"
+" This is used by the WatchForChanges* commands, but it can also be
+" useful to call this from scripts. For example, if your script executes a
+" long-running process, you can have your script run that long-running process
+" in the background so that you can continue editing other files, redirects its
+" output to a file, and open the file in another buffer that keeps reloading itself
+" as more output from the long-running command becomes available.
+"
+" Arguments:
+" * bufname: The name of the buffer/file to watch for changes.
+"     Use '*' to watch all files.
+" * options (optional): A Dict object with any of the following keys:
+"   * autoread: If set to 1, causes autoread option to be turned on for the buffer in
+"     addition to setting up the autocommands.
+"   * toggle: If set to 1, causes this behavior to toggle between on and off.
+"     Mostly useful for mappings and commands. In scripts, you probably want to
+"     explicitly enable or disable it.
+"   * disable: If set to 1, turns off this behavior (removes the autocommand group).
+"   * while_in_this_buffer_only: If set to 0 (default), the events will be triggered no matter which
+"     buffer you are editing. (Only the specified buffer will be checked for changes,
+"     though, still.) If set to 1, the events will only be triggered while
+"     editing the specified buffer.
+"   * more_events: If set to 1 (the default), creates autocommands for the events
+"     listed above. Set to 0 to not create autocommands for CursorMoved, CursorMovedI,
+"     (Presumably, having too much going on for those events could slow things down,
+"     since they are triggered so frequently...)
+function! WatchForChanges(bufname, ...)
+  " Figure out which options are in effect
+  if a:bufname == '*'
+    let id = 'WatchForChanges'.'AnyBuffer'
+    " If you try to do checktime *, you'll get E93: More than one match for * is given
+    let bufspec = ''
+  else
+    if bufnr(a:bufname) == -1
+      echoerr "Buffer " . a:bufname . " doesn't exist"
+      return
+    end
+    let id = 'WatchForChanges'.bufnr(a:bufname)
+    let bufspec = a:bufname
+  end
+  if len(a:000) == 0
+    let options = {}
+  else
+    if type(a:1) == type({})
+      let options = a:1
+    else
+      echoerr "Argument must be a Dict"
+    end
+  end
+  let autoread    = has_key(options, 'autoread')    ? options['autoread']    : 0
+  let toggle      = has_key(options, 'toggle')      ? options['toggle']      : 0
+  let disable     = has_key(options, 'disable')     ? options['disable']     : 0
+  let more_events = has_key(options, 'more_events') ? options['more_events'] : 1
+  let while_in_this_buffer_only = has_key(options, 'while_in_this_buffer_only') ? options['while_in_this_buffer_only'] : 0
+  if while_in_this_buffer_only
+    let event_bufspec = a:bufname
+  else
+    let event_bufspec = '*'
+  end
+  let reg_saved = @"
+  "let autoread_saved = &autoread
+  let msg = "\n"
+  " Check to see if the autocommand already exists
+  redir @"
+    silent! exec 'au '.id
+  redir END
+  let l:defined = (@" !~ 'E216: No such group or event:')
+  " If not yet defined...
+  if !l:defined
+    if l:autoread
+      let msg = msg . 'Autoread enabled - '
+      if a:bufname == '*'
+        set autoread
+      else
+        setlocal autoread
+      end
+    end
+    silent! exec 'augroup '.id
+      if a:bufname != '*'
+        "exec "au BufDelete    ".a:bufname . " :silent! au! ".id . " | silent! augroup! ".id
+        "exec "au BufDelete    ".a:bufname . " :echomsg 'Removing autocommands for ".id."' | au! ".id . " | augroup! ".id
+        exec "au BufDelete    ".a:bufname . " execute 'au! ".id."' | execute 'augroup! ".id."'"
+      end
+        exec "au BufEnter     ".event_bufspec . " :checktime ".bufspec
+        exec "au CursorHold   ".event_bufspec . " :checktime ".bufspec
+        exec "au CursorHoldI  ".event_bufspec . " :checktime ".bufspec
+      " The following events might slow things down so we provide a way to disable them...
+      " vim docs warn:
+      "   Careful: Don't do anything that the user does
+      "   not expect or that is slow.
+      if more_events
+        exec "au CursorMoved  ".event_bufspec . " :checktime ".bufspec
+        exec "au CursorMovedI ".event_bufspec . " :checktime ".bufspec
+      end
+    augroup END
+    let msg = msg . 'Now watching ' . bufspec . ' for external updates...'
+  end
+  " If they want to disable it, or it is defined and they want to toggle it,
+  if l:disable || (l:toggle && l:defined)
+    if l:autoread
+      let msg = msg . 'Autoread disabled - '
+      if a:bufname == '*'
+        set noautoread
+      else
+        setlocal noautoread
+      end
+    end
+    " Using an autogroup allows us to remove it easily with the following
+    " command. If we do not use an autogroup, we cannot remove this
+    " single :checktime command
+    " augroup! checkforupdates
+    silent! exec 'au! '.id
+    silent! exec 'augroup! '.id
+    let msg = msg . 'No longer watching ' . bufspec . ' for external updates.'
+  elseif l:defined
+    let msg = msg . 'Already watching ' . bufspec . ' for external updates'
+  end
+""  echo msg
+  let @"=reg_saved
+endfunction
+
+let autoreadargs={'autoread':1}
+execute WatchForChanges("*",autoreadargs)
+
+" let g:seoul256_background = 235  " 233 - 239
+" colo seoul256
+"se colorcolumn=80
+autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s " not /* */"
+
+" Fugitive
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gf :Gfetch<cr>
+nnoremap <leader>gr :Grebase<cr>
+nnoremap <leader>gc :Gcommit --verbose<cr>
+nnoremap <leader>gw :Gwrite<cr>
+nnoremap <leader>gp :Gpush<cr>
+nnoremap <leader>gl :Gpull<cr>
+
+" colo base16-gruvbox-dark-medium
+" colo base16-material
+" colo flattened_light
+" colo seoul256
+
+" let g:pandoc#biblio#bibs = ["/Users/seananderson/src/gfsynopsis/report/report-rmd/bib/spp-refs.bib"]
+
+" au BufNewFile,BufRead *.Rmd set filetype=rmd
+" autocmd BufRead,BufNewFile *.Rmd set filetype=rmarkdown
+autocmd FileType rmd.r setlocal commentstring=<!--\ %s\ -->
+
+colo nord

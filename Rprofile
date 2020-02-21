@@ -21,3 +21,54 @@ Sys.setenv(PATH = paste(Sys.getenv("PATH"),
 options(
   blogdown.author = "Sean Anderson"
 )
+
+options(pbs.uid="AndersonSe")
+options(pbs.pwd="Anders0nS3")
+options(pbs.ip="10.114.52.8")
+options(pbs.sqldriver="ODBC Driver 17 for SQL Server")
+
+# options(
+#   warnPartialMatchArgs = TRUE,
+#   warnPartialMatchDollar = TRUE,
+#   warnPartialMatchAttr = TRUE
+# )
+
+######## TMB - setup RStudio
+setHook(packageEvent("TMB", "onLoad"),
+        function(...) {
+            if("tools:rstudio" %in% search()) {
+                tmb.env <- asNamespace("TMB")
+                compile.orig <- tmb.env$compile
+                unlockBinding("compile", tmb.env)
+                ## Rstudio handle compilation errors:
+                rs.env <- as.environment("tools:rstudio")
+                tmb.env$compile <- function(file,...) {
+                    .Call("rs_sourceCppOnBuild",
+                          file, FALSE, FALSE)
+                    status <- try( compile.orig(file, ...) )
+                    succeeded <- (status == 0)
+                    .Call("rs_sourceCppOnBuildComplete",
+                          succeeded, "")
+                    if(!succeeded) stop("Compilation failed")
+                    status
+                }
+                ## Bind "sourceCpp" button to TMB compile
+                rcpp.env <- asNamespace("Rcpp")
+                unlockBinding("sourceCpp", rcpp.env)
+                rcpp.env$sourceCpp <- tmb.env$compile
+                ## Auto completion needs TMB and Eigen on system includes
+                if (.Platform$OS.type=="windows") {
+                  ## Overload system.file
+                  system.file <- function(...){
+                    ans <- base::system.file(...)
+                    chartr("\\", "/", shortPathName(ans))
+                  }
+                }
+                definc <- Sys.getenv("CPLUS_INCLUDE_PATH")
+                tmbinc <- system.file("include", package="TMB")
+                eiginc <- system.file("include", package="RcppEigen")
+                inc <- c(definc, tmbinc, eiginc)
+                inc <- paste(inc[inc != ""], collapse=.Platform$path.sep)
+                Sys.setenv(CPLUS_INCLUDE_PATH = inc)
+            }
+        } )

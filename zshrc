@@ -81,7 +81,7 @@ done
 alias ssh-ubuntu='ssh -p 2222 seananderson@localhost'
 alias start-ubuntu='VBoxManage startvm UbuntuServer --type headless'
 
-export VISUAL="vim" 
+export VISUAL="vim"
 export EDITOR="$VISUAL"
 export R_HISTFILE=~/Dropbox/.Rhistory
 export BIBINPUTS=".:~/Library/texmf/BIBINPUTS"
@@ -97,7 +97,7 @@ alias db='cd ~/Dropbox'
 alias ...='cd ../..'
 
 # The 'ls' family (this assumes you use the GNU ls)
-alias l='ls'               
+alias l='ls'
 alias la='ls -Al'               # show hidden files
 # alias ls='ls -hF --color' # add colors for filetype recognition
 # alias lx='ls -lXB'              # sort by extension
@@ -154,12 +154,12 @@ alias v='nvim'
 alias vs='nvim -S Session.vim'
 alias ms='python ~/src/aenea-fork/server/osx/server_osx.py'
 alias msd='python ~/src/aenea-fork/server/osx/server_osx.py --daemon'
-alias ma='open "smb://172.16.145.150/MacroSystem"'
+alias ma='open "smb://172.16.45.1/MacroSystem"'
 alias tn='tmux new -s'
 alias ta='tmux attach -t'
 alias tl='tmux ls'
 alias tk='tmux kill-session -t'
-alias mc='while true; do make --silent; sleep 2; done'
+alias mc='while true; do make --silent; sleep 5; done'
 alias mu='mutt'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -175,3 +175,4 @@ local file
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
