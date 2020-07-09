@@ -1519,6 +1519,7 @@ execute WatchForChanges("*",autoreadargs)
 " colo seoul256
 "se colorcolumn=80
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s " not /* */"
+autocmd FileType pandoc setlocal formatoptions=qcro
 
 " Fugitive
 nnoremap <leader>gd :Gdiff<cr>
@@ -1536,9 +1537,14 @@ nnoremap <leader>gl :Gpull<cr>
 " colo seoul256
 
 " let g:pandoc#biblio#bibs = ["/Users/seananderson/src/gfsynopsis/report/report-rmd/bib/spp-refs.bib"]
+let g:pandoc#biblio#bibs = ["/Volumes/Extreme-SSD/src/gfmp/report/bib/ref.bib"]
 
 " au BufNewFile,BufRead *.Rmd set filetype=rmd
 " autocmd BufRead,BufNewFile *.Rmd set filetype=rmarkdown
 autocmd FileType rmd.r setlocal commentstring=<!--\ %s\ -->
 
 colo nord
+" colo flattened_light
+
+highlight nonascii guibg=Red ctermbg=1 term=standout
+au BufReadPost * syntax match nonascii "[^\u0000-\u007F]"

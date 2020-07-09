@@ -2,8 +2,9 @@
   options(
     repos = c(CRAN = "https://cran.rstudio.com/"),
     browserNLdisabled = TRUE,
-    Ncpus = parallel::detectCores() - 2L,
-    deparse.max.lines = 2)
+    Ncpus = round(parallel::detectCores()/2), 
+    deparse.max.lines = 2
+  )
 }
 
 if (interactive()) {
@@ -21,6 +22,44 @@ Sys.setenv(PATH = paste(Sys.getenv("PATH"),
 options(
   blogdown.author = "Sean Anderson"
 )
+
+if (interactive() && requireNamespace("rsthemes", quietly = TRUE)) {
+  # Set preferred themes if not handled elsewhere..
+  rsthemes::set_theme_light("Flat White {rsthemes}")  # light theme
+  rsthemes::set_theme_dark("Nord Polar Night Aurora {rsthemes}") # dark theme
+  rsthemes::set_theme_favorite(c(
+    "base16 Materia {rsthemes}",
+    "base16 Gruvbox dark, hard {rsthemes}",
+    "base16 Eighties {rsthemes}",
+    "base16 Gruvbox dark, pale {rsthemes}",
+    "base16 Nord {rsthemes}",
+    "base16 Ocean {rsthemes}",
+    "base16 OceanicNext {rsthemes}",
+    "base16 OneDark {rsthemes}",
+    "base16 Solarized Dark {rsthemes}",
+    "base16 Tomorrow Night {rsthemes}",
+    "Oceanic Plus {rsthemes}",
+    "One Dark {rsthemes}",
+    "One Light {rsthemes}",
+    "Solarized Dark {rsthemes}",
+    "Flat White {rsthemes}",
+    "Nord Polar Night Aurora {rsthemes}",
+    "Textmate (default)"
+  ))
+  #rsthemes::use_theme_dark()
+
+# # Whenever the R session restarts inside RStudio...
+#setHook("rstudio.sessionInit", function(isNewSession) {
+#  rsthemes::use_theme_dark()
+#}, action = "append")
+
+
+#  # Whenever the R session restarts inside RStudio...
+#  setHook("rstudio.sessionInit", function(isNewSession) {
+#    # Automatically choose the correct theme based on time of day
+#    rsthemes::use_theme_auto(dark_start = "18:00", dark_end = "6:00")
+#  }, action = "append")
+}
 
 options(pbs.uid="AndersonSe")
 options(pbs.pwd="Anders0nS3")
