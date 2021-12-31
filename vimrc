@@ -75,13 +75,16 @@ Plug 'rakr/vim-one'
 if has("nvim")
   " Plug 'ludovicchabant/vim-gutentags'
 endif
-if has('nvim')
+" if has('nvim')
+  Plug 'ncm2/ncm2'
+  Plug 'roxma/nvim-yarp'
   Plug 'jalvesaq/Nvim-R'
-  "Plug 'jalvesaq/R-Vim-runtime'
-  "Plug '~/src/Nvim-R'
-else
-  Plug 'jcfaria/Vim-R-plugin'
-endif
+  Plug 'gaalcaras/ncm-R'
+  Plug 'dense-analysis/ale'
+  " Plug 'jalvesaq/zotcite'
+" else
+  " Plug 'jcfaria/Vim-R-plugin'
+" endif
 Plug 'romainl/flattened'
 Plug 'tyrannicaltoucan/vim-deep-space'
 Plug 'cocopon/iceberg.vim'
@@ -479,13 +482,14 @@ setlocal display+=lastline
 
 let g:pandoc#formatting#textwidth = 78
 let g:pandoc#syntax#conceal#use = 0
-let g:pandoc_syntax_dont_use_conceal_for_rules = ["codeblock_start", "codeblock_delim"]
-let g:pandoc#modules#disabled = ["folding"]
+"let g:pandoc_syntax_dont_use_conceal_for_rules = ["codeblock_start", "codeblock_delim"]
+"let g:pandoc#modules#disabled = ["folding"]
 " let g:pandoc#biblio#bibs = ["/Users/seananderson/Dropbox/tex/ref3.bib"]
 let g:pandoc#biblio#use_bibtool = 1
 " let g:pandoc#formatting#mode = "hA"
-let g:pandoc#formatting#smart_autoformat_on_cursormoved = 1
-let g:pandoc#formatting#mode = "s"
+"let g:pandoc#formatting#smart_autoformat_on_cursormoved = 1
+"let g:pandoc#formatting#mode = "s"
+let g:pandoc#completion#bib#mode = 'citeproc'
 " au BufNewFile,BufEnter *.Rmd let g:pandoc#formatting#mode = "s"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1299,7 +1303,7 @@ let g:neosnippet#disable_runtime_snippets = {
 
 let g:neosnippet#snippets_directory="~/src/vim-snippets"
 
-autocmd BufRead,BufNewFile *.Rmd set ft=rmd.r
+autocmd BufRead,BufNewFile *.Rmd set ft=rmd
 
 " let g:neosnippet#scope_aliases['rmd'] = 'rmd,r'
 
@@ -1327,8 +1331,8 @@ autocmd FileType r setlocal commentstring=#\ %s
   let g:airline_theme='one'
 
 " https://github.com/tweekmonster/nvim-python-doctor/wiki/Advanced:-Using-pyenv
-let g:python_host_prog = '/Users/seananderson/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/Users/seananderson/.pyenv/versions/neovim3/bin/python'
+" let g:python_host_prog = '/Users/seananderson/.pyenv/versions/neovim2/bin/python'
+" let g:python3_host_prog = '/Users/seananderson/.pyenv/versions/neovim3/bin/python'
 
 set wrap
 " colo flattened_dark
@@ -1541,10 +1545,57 @@ let g:pandoc#biblio#bibs = ["/Volumes/Extreme-SSD/src/gfmp/report/bib/ref.bib"]
 
 " au BufNewFile,BufRead *.Rmd set filetype=rmd
 " autocmd BufRead,BufNewFile *.Rmd set filetype=rmarkdown
-autocmd FileType rmd.r setlocal commentstring=<!--\ %s\ -->
+" autocmd FileType rmd setlocal commentstring=<!--\ %s\ -->
 
 colo nord
 " colo flattened_light
 
 highlight nonascii guibg=Red ctermbg=1 term=standout
 au BufReadPost * syntax match nonascii "[^\u0000-\u007F]"
+
+autocmd FileType r inoremap <buffer> ,m <Esc>:normal! a %>%<CR>a <CR>
+autocmd FileType rnoweb inoremap <buffer> ,m <Esc>:normal! a %>%<CR>a 
+autocmd FileType rmd inoremap <buffer> ,m <Esc>:normal! a %>%<CR>a
+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'r': ['styler'],
+\}
+nnoremap <leader>af :ALEFix<cr>
+
+" https://github.com/jalvesaq/Nvim-R/issues/628
+function MyRmdCommentStr()
+  if b:IsInRCode(0)
+    setlocal commentstring=#\ %s
+  elseif ((search('^---$', 'Wn') || search('^\.\.\.$', 'Wn')) && search('^---$', 'bnW'))
+    setlocal commentstring=#\ %s
+  else
+    setlocal commentstring=<!--\ %s\ -->
+  endif
+endfunction
+
+function MyRnwCommentStr()
+  if b:IsInRCode(0)
+    setlocal commentstring=#\ %s
+  else
+    setlocal commentstring=%\ %s
+  endif
+endfunction
+
+function InitMyRmdCmtStr()
+  augroup RmdCStr
+    autocmd!
+    autocmd CursorMoved <buffer> call MyRmdCommentStr()
+  augroup END
+endfunction
+
+function InitMyRnwCmtStr()
+  augroup RnwCStr
+    autocmd!
+    autocmd CursorMoved <buffer> call MyRnwCommentStr()
+  augroup END
+endfunction
+
+autocmd FileType rmd call InitMyRmdCmtStr()
+autocmd FileType rnoweb call InitMyRnwCmtStr()
+autocmd FileType r set commentstring=#\ %s
